@@ -1,0 +1,601 @@
+﻿@using Kitchen.ViewModel
+@model ContactViewModel
+<style>
+ 
+    .contact-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        background-color: var(--accent-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: var(--primary-dark);
+        transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+        background-color: var(--primary-dark);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .payment-method {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+        .payment-method:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+    .btn-accent {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-accent:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: white !important;
+        }
+
+    .btn:hover {
+        color: white !important;
+    }
+
+    .btn-outline-light:hover {
+        color: var(--primary-dark) !important;
+    }
+
+    .btn-light:hover {
+        color: white !important;
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+    footer {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% );
+        color: white;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+    }
+
+        .social-icon:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+    /* Logo animations and responsive styles */
+    .logo-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+
+
+    .logo-main {
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .logo-subtitle {
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    /* Responsive styles for navbar */
+  
+</style>
+<section class="py-5" dir="@ViewData["Direction"]">
+    <div class="container py-4">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h1 class="display-4 fw-bold" style="color: var(--primary-dark)">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:تواصل معنا
+                }
+                else
+                {
+                    @:Contact Us
+                }
+            </h1>
+            <p class="lead text-muted">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:نحن هنا لمساعدتك ونرحب بتواصلك معنا عبر أي من قنوات الاتصال التالية
+                }
+                else
+                {
+                    @:We are here to assist you and welcome your contact through any of the following communication channels
+                }
+            </p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Email -->
+            @foreach (var emails in Model.contacts)
+            {
+    @if (emails.Type == "Email")
+    {
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-card p-4 text-center h-100">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope fa-xl"></i>
+                        </div>
+                        <h3 class="h5 mb-3">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:البريد الإلكتروني
+                            }
+                            else
+                            {
+                                @:Email
+                            }
+                        </h3>
+                        
+                            <p class="mb-3">@emails.Value</p>
+                            <a href = "mailto:@emails.Value" class= "btn btn-accent" >
+                                       
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:إرسال بريد
+                            }
+                            else
+                            {
+                                @:Send Email
+                            }
+                        </a>
+                        
+                </div>
+            </div>
+                }
+            }
+            <!-- Phone/WhatsApp -->
+              @foreach (var mobile in Model.contacts)
+            {
+                @if (mobile.Type == "Phone")
+                {
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contact-card p-4 text-center h-100">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp fa-xl"></i>
+                            </div>
+                            <h3 class="h5 mb-3">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @:الهاتف / واتساب
+                                }
+                                else
+                                {
+                                    @:Phone / WhatsApp
+                                }
+                            </h3>
+                            <p class="mb-3">@mobile.Value</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="tel:@mobile.Value" class="btn btn-accent">
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:اتصال
+                                    }
+                                    else
+                                    {
+                                        @:Call
+                                    }
+                                </a>
+                                <a href="https://wa.me/@mobile.Value" class="btn btn-accent">
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:واتساب
+                                    }
+                                    else
+                                    {
+                                        @:WhatsApp
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            <!-- Vodafone Cash -->
+               @foreach (var vodafone in Model.contacts)
+            {
+                @if (vodafone.Type == "Vodafone")
+                {
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="contact-card p-4 text-center h-100">
+                            <div class="contact-icon">
+                                <i class="fas fa-mobile-alt fa-xl"></i>
+                            </div>
+                            <h3 class="h5 mb-3">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @:فودافون كاش
+                                }
+                                else
+                                {
+                                    @:Vodafone Cash
+                                }
+                            </h3>
+                            <p class="mb-3">@vodafone.Value</p>
+                            <button class="btn btn-accent" onclick="copyToClipboard('@vodafone.Value')">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @:نسخ الرقم
+                                }
+                                else
+                                {
+                                    @:Copy Number
+                                }
+                            </button>
+                        </div>
+                    </div>
+                    
+                }
+
+            }
+        </div>
+        <!-- Payment Methods -->
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="400">
+            <div class="col-lg-8">
+                <h2 class="text-center mb-4" style="color: var(--primary-dark)">
+                    @if (ViewData["Direction"].ToString() == "rtl")
+                    {
+                        @:طرق الدفع
+                    }
+                    else
+                    {
+                        @:Payment Methods
+                    }
+                </h2>
+
+                <!-- Bank Transfer -->
+                @foreach (var bank in Model.paymentMethods)
+                {
+
+   
+                        @if (bank.AccountNumber != null)
+                        {
+                <div class="payment-method">
+                    <h3 class="h5 mb-3">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @bank.TypeAr
+                        }
+                        else
+                        {
+                                @bank.TypeEn
+                        }
+                    </h3>
+                       
+                            
+                        <p class="mb-2">
+                        <strong>
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:رقم الحساب:
+                            }
+                            else
+                            {
+                                @:Account Number:
+                            }
+                        </strong> @bank.AccountNumber
+                    </p>
+                        
+                        @if (bank.IBAN != null)
+                        {
+                            <p class="mb-2">
+                                <strong>
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:IBAN:
+                                    }
+                                    else
+                                    {
+                                        @:IBAN:
+                                    }
+                                </strong> @bank.IBAN
+                            </p>
+                        }
+                        @if (bank.AccountNumber != null)
+                        {
+                        <button class="btn btn-accent btn-sm" onclick="copyToClipboard('@bank.AccountNumber')">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:نسخ رقم الحساب
+                        }
+                        else
+                        {
+                            @:Copy Account Number
+                        }
+                    </button>
+                        }
+                        @if (bank.IBAN != null)
+                        {
+                    <button class="btn btn-accent btn-sm" onclick="copyToClipboard('@bank.IBAN')">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:نسخ IBAN
+                        }
+                        else
+                        {
+                            @:Copy IBAN
+                        }
+                    </button>
+                        }
+                </div>
+    }
+                <!-- InstaPay -->
+                    @if(bank.InstapayEmail != null)
+                    {
+                        
+                    
+                        <div class="payment-method">
+                        <h3 class="h5 mb-3">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:انستاباي
+                        }
+                        else
+                        {
+                            @:InstaPay
+                        }
+                        </h3>
+                        <p class="mb-2">
+                             @bank.InstapayEmail
+                        </p>
+                            <div class="d-flex gap-2">
+                        <button class="btn btn-accent btn-sm" onclick="copyToClipboard('@bank.InstapayEmail')">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:نسخ العنوان
+                            }
+                            else
+                            {
+                                @:Copy Address
+                            }
+                        </button>
+                        <a href="https://ipn.eg/S/@bank.InstapayEmail/instapay/2hNZPf" class="btn btn-accent btn-sm">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:الدفع عبر انستاباي
+                            }
+                            else
+                            {
+                                @:Pay via InstaPay
+                            }
+                        </a>
+                    </div>
+                </div>
+                    }
+        }
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+   
+
+    // Function to adjust navbar responsively
+    function adjustNavbar() {
+      const navbarCollapse = document.querySelector(".navbar-collapse");
+      const logoImg = document.querySelector(".logo-img");
+      const logoMain = document.querySelector(".logo-main");
+      const logoSubtitle = document.querySelector(".logo-subtitle");
+      const logoContainer = document.querySelector(".logo-container");
+      const logoText = document.querySelector(".logo-text");
+      const textEnd = document.querySelector(".text-end");
+
+      // Ensure logo container and text are always in a row
+      if (logoContainer) {
+        logoContainer.style.flexDirection = "row";
+        logoContainer.style.alignItems = "center";
+      }
+
+      if (logoText) {
+        logoText.style.flexDirection = "row";
+        logoText.style.alignItems = "center";
+      }
+
+      if (textEnd) {
+        textEnd.style.textAlign = "right";
+      }
+
+      if (window.innerWidth < 576) {
+        // Mobile view
+        logoImg.style.width = "40px";
+        logoImg.style.height = "40px";
+        logoMain.style.fontSize = "1.1rem";
+        logoMain.style.whiteSpace = "nowrap";
+        logoSubtitle.style.fontSize = "0.7rem";
+        logoSubtitle.style.whiteSpace = "nowrap";
+
+        if (navbarCollapse) {
+          navbarCollapse.classList.add("navbar-mobile");
+        }
+
+        // Add animation to logo
+        logoImg.style.animation = "pulse 2s infinite";
+      } else if (window.innerWidth < 768) {
+        // Tablet view
+        logoImg.style.width = "45px";
+        logoImg.style.height = "45px";
+        logoMain.style.fontSize = "1.2rem";
+        logoMain.style.whiteSpace = "nowrap";
+        logoSubtitle.style.fontSize = "0.75rem";
+        logoSubtitle.style.whiteSpace = "nowrap";
+
+        if (navbarCollapse) {
+          navbarCollapse.classList.remove("navbar-mobile");
+        }
+
+        // Add animation to logo
+        logoImg.style.animation = "pulse 2s infinite";
+      } else if (window.innerWidth < 992) {
+        // Small desktop view
+        logoImg.style.width = "50px";
+        logoImg.style.height = "50px";
+        logoMain.style.fontSize = "1.3rem";
+        logoMain.style.whiteSpace = "nowrap";
+        logoSubtitle.style.fontSize = "0.8rem";
+        logoSubtitle.style.whiteSpace = "nowrap";
+
+        if (navbarCollapse) {
+          navbarCollapse.classList.remove("navbar-mobile");
+        }
+
+        // Add animation to logo
+        logoImg.style.animation = "pulse 2s infinite";
+      } else {
+        // Desktop view
+        logoImg.style.width = "60px";
+        logoImg.style.height = "60px";
+        logoMain.style.fontSize = "1.5rem";
+        logoMain.style.whiteSpace = "nowrap";
+        logoSubtitle.style.fontSize = "1rem";
+        logoSubtitle.style.whiteSpace = "nowrap";
+
+        if (navbarCollapse) {
+          navbarCollapse.classList.remove("navbar-mobile");
+        }
+
+        // Add animation to logo
+        logoImg.style.animation = "pulse 2s infinite";
+      }
+    }
+
+    // Call adjustNavbar on page load and window resize
+    window.addEventListener("load", adjustNavbar);
+    window.addEventListener("resize", adjustNavbar);
+
+    function copyToClipboard(text) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          alert("تم النسخ بنجاح!");
+        })
+        .catch((err) => {
+          console.error("فشل النسخ:", err);
+        });
+    }
+
+    // Form validation
+    (function () {
+      "use strict";
+      var forms = document.querySelectorAll(".needs-validation");
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            } else {
+              event.preventDefault();
+              // Here you can add your form submission logic
+              alert("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.");
+              form.reset();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
+
+    // Language switch logic
+    const translations = {
+      ar: {
+        "nav-home": "الرئيسية",
+        "nav-agriculture": "الزراعية",
+        "nav-chemical": "الكيميائية",
+        "nav-contact": "اتصل بنا",
+        "contact-title": "تواصل معنا",
+        "contact-desc":
+          "نحن هنا لمساعدتك ونرحب بتواصلك معنا عبر أي من قنوات الاتصال التالية",
+        "contact-email": "البريد الإلكتروني",
+        "contact-send": "إرسال بريد",
+        "contact-phone": "الهاتف / واتساب",
+        "contact-call": "اتصال",
+        "contact-whatsapp": "واتساب",
+        "contact-vodafone": "فودافون كاش",
+        "contact-copy": "نسخ الرقم",
+        // ... add more keys as needed
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-agriculture": "Agriculture",
+        "nav-chemical": "Chemical",
+        "nav-contact": "Contact",
+        "contact-title": "Contact Us",
+        "contact-desc":
+          "We are here to help you and welcome your contact through any of the following channels.",
+        "contact-email": "Email",
+        "contact-send": "Send Email",
+        "contact-phone": "Phone / WhatsApp",
+        "contact-call": "Call",
+        "contact-whatsapp": "WhatsApp",
+        "contact-vodafone": "Vodafone Cash",
+        "contact-copy": "Copy Number",
+        // ... add more keys as needed
+      },
+    };
+
+    function setLang(lang) {
+      document.documentElement.lang = lang === "ar" ? "ar" : "en";
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      for (const key in translations[lang]) {
+        const el = document.querySelector(`[data-i18n="${key}"]`);
+        if (el) el.textContent = translations[lang][key];
+      }
+      document.getElementById("langSwitch").textContent =
+        lang === "ar" ? "EN" : "AR";
+      localStorage.setItem("lang", lang);
+    }
+
+    document
+      .getElementById("langSwitch")
+      .addEventListener("click", function () {
+        const current = localStorage.getItem("lang") || "ar";
+        setLang(current === "ar" ? "en" : "ar");
+      });
+
+    window.addEventListener("DOMContentLoaded", function () {
+      setLang(localStorage.getItem("lang") || "ar");
+    });
+</script>

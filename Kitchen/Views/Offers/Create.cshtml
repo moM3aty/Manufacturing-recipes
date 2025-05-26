@@ -1,0 +1,63 @@
+﻿@model Kitchen.Models.Offer
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<style>
+   
+    .form-group {
+        margin-bottom: 1.5rem;
+        width:70%;
+        margin: 0 auto;
+    }
+
+    .form-control {
+        direction: rtl; 
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .btn-block {
+        width: 200px;
+        padding: 12px;
+        margin: 20px auto;
+        background-color: lightpink;
+        border: none;
+        justify-content: center;
+        display: flex;
+    }
+
+    .col-form-label {
+        font-weight: bold;
+    }
+
+    </style>
+
+@using (Html.BeginForm("Create", "Offers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group text-right">
+        @Html.LabelFor(m => m.TitleAr, "العنوان (عربي)", new { @class = "col-form-label" })
+        @Html.TextBoxFor(m => m.TitleAr, new { @class = "form-control", placeholder = "أدخل العنوان بالعربية" })
+    </div>
+
+    <div class="form-group text-right">
+        @Html.LabelFor(m => m.TitleEn, "العنوان (إنجليزي)", new { @class = "col-form-label" })
+        @Html.TextBoxFor(m => m.TitleEn, new { @class = "form-control", placeholder = "Enter the title in English" })
+    </div>
+
+    <div class="form-group text-right">
+        @Html.LabelFor(m => m.DescriptionAr, "الوصف (عربي)", new { @class = "col-form-label" })
+        @Html.TextAreaFor(m => m.DescriptionAr, new { @class = "form-control", placeholder = "أدخل الوصف بالعربية" })
+    </div>
+
+    <div class="form-group text-right">
+        @Html.LabelFor(m => m.DescriptionEn, "الوصف (إنجليزي)", new { @class = "col-form-label" })
+        @Html.TextAreaFor(m => m.DescriptionEn, new { @class = "form-control", placeholder = "Enter the description in English" })
+    </div>
+
+    <div class="form-group text-right">
+        @Html.Label("صورة العرض", null, new { @class = "col-form-label" })
+        <input type="file" name="ImageFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">حفظ</button>
+}

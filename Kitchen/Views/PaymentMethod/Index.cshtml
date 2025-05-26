@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PaymentMethod>
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2 class="text-center">طرق الدفع</h2>
+<a asp-action="Create" class="btn btn-success mb-3">إضافة طريقة دفع جديدة</a>
+
+<table class="table table-bordered text-right" dir="rtl">
+    <thead>
+        <tr>
+            <th>نوع الطريقة</th>
+            <th>رقم الحساب</th>
+            <th>IBAN</th>
+            <th>بريد إنستاباي</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var method in Model)
+        {
+            <tr>
+                <td>@method.TypeAr</td>
+                <td>@method.TypeEn</td>
+                <td>@method.AccountNumber</td>
+                <td>@method.IBAN</td>
+                <td>@method.InstapayEmail</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@method.Id" class="btn btn-primary btn-sm">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@method.Id" class="btn btn-danger btn-sm" onclick="return confirm('هل أنت متأكد من الحذف؟');">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+﻿@model List<Kitchen.Models.Offer>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2 class="mb-4 text-center text-primary fw-bold">العروض والإعلانات</h2>
+
+<div class="text-end mb-4">
+    <a href="@Url.Action("Create")" class="btn btn-success px-4">➕ إضافة عرض</a>
+</div>
+
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-3">
+            <div class="card border-0 shadow-lg h-100">
+                <img src="@item.ImageUrl" class="card-img-top rounded-top" style="width:100%;" alt="صورة العرض" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-semibold text-dark">@item.TitleAr</h5>
+                    <p class="card-text text-muted">@item.DescriptionAr</p>
+                    <div class="mt-auto d-flex justify-content-between">
+                        <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-outline-warning btn-sm">✏️ تعديل</a>
+                        <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-outline-danger btn-sm" onclick="return confirm('هل أنت متأكد من الحذف؟');">🗑️ حذف</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,484 @@
+﻿@using Kitchen.ViewModel
+@model AdminDashboardViewModel
+
+<!-- Hero Section with Parallax and Animation -->
+<style>
+
+    .btn-accent {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+    }
+
+        .btn-accent:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-header {
+        background: linear-gradient( 135deg, var(--primary) 0%, var(--primary-dark) 100% );
+        color: white;
+        border-radius: 10px 10px 0 0 !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category-badge {
+        background-color: var(--accent-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    footer {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% );
+        color: white;
+    }
+
+    .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not( .valid-feedback ):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 0.375rem;
+        border-bottom-left-radius: 0.375rem;
+    }
+
+    .input-group > .form-control:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0.375rem;
+        border-bottom-right-radius: 0.375rem;
+    }
+
+    .recipe-code {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+
+    .card-footer-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .more-recipes {
+        display: none;
+    }
+
+    .chemical-icon {
+        background-color: rgba(255, 193, 180, 0.2);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .logo-subtitle {
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-top: -5px;
+    }
+
+    /* Add hover animations */
+    .card {
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        transition: all 0.3s ease;
+        margin: 5px 0;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Hero buttons responsive styles */
+    .hero-buttons {
+        margin-top: 20px;
+    }
+
+        .hero-buttons .btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .hero-buttons .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+
+    .chemical-icon:hover {
+        transform: rotate(360deg);
+        background-color: rgba(255, 193, 180, 0.4);
+    }
+
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Add pulse effect to badges */
+
+
+    .category-badge {
+        animation: pulse 2s infinite;
+    }
+
+    .offer-full-description.line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .offer-full-description.expanded {
+        -webkit-line-clamp: unset;
+        overflow: visible;
+    }
+</style>
+
+
+<section id="hero-section"
+         class="hero text-white text-center py-5 "
+         data-aos="zoom-in"
+         data-aos-duration="1500">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <h1 class="display-3 fw-bold animated-text">
+                    @ViewData["HeroTitle"]
+                </h1>
+                <p class="lead mb-4 animated-text">
+                    @ViewData["HeroDesc"]
+                </p>
+                <a href="#recipes" class="btn btn-lg">
+                    @ViewData["HeroButton"]
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="kitchen-food-section py-5">
+    <div class="container">
+        <h2 class="section-title mb-5 text-center">
+            @(ViewData["Direction"].ToString() == "rtl" ? "روابط مهمة" : "Important Links")
+        </h2>
+
+        <div class="row g-4">
+            <!-- Card 1: Agriculture -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/green.jpg" alt="Agriculture" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "الزراعية" : "Agriculture")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "استكشف منتجات وخدمات زراعية عالية الجودة لدعم الزراعة المستدامة."
+                                                        : "Explore high-quality agricultural products and services to support sustainable farming.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="Agriculture" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Chemical -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/chemil.jpg" alt="Chemical" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "الكيميائية" : "Chemical")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "تعرف على المواد والمنتجات الكيميائية لتطبيقات متنوعة."
+                                                        : "Learn about chemical materials and products for various applications.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="Chemical" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Pharmaceutical -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/sectionparphc.jpg" alt="Pharmaceutical" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "الصيدلية" : "Pharmaceutical")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "اكتشف الأدوية والمستحضرات الصيدلانية بمعايير جودة عالية."
+                                                        : "Discover pharmaceuticals and medical preparations with high quality standards.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="clinic" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Cosmetics -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/Cosmetic-Manufacturers-in-Savli (1).jpg" alt="Cosmetics" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "مستحضرات التجميل" : "Cosmetics")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "استكشف مجموعة واسعة من منتجات مستحضرات التجميل لإطلالة مميزة."
+                                                        : "Explore a wide range of makeup products for a stunning look.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="makeup" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Food -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="500">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/sectionfood.webp" alt="Food" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "الغذاء" : "Food")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "اطلع على منتجات غذائية صحية ومكونات طبيعية لوجباتك."
+                                                        : "Browse healthy food products and natural ingredients for your meals.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="food" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="recipes"
+         class="py-5"
+         data-aos="fade-up"
+         data-aos-duration="1500">
+    <div class="container">
+        <h2 class="section-title">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:عروض وإعلانات
+                }
+                else
+                {
+                    @:Offers and Promotions
+                }
+        </h2>
+        <div class="row g-4">
+@foreach(var sponser in Model.Offers) {
+                <div class="col-12 col-sm-6 col-lg-4 mb-4">
+                    <div class="card shadow-lg hover-card h-100" data-aos="flip-left">
+                    <img src="@sponser.ImageUrl"
+                         class="card-img-top" style="object-fit:fill"
+                         alt="  @if (ViewData["Direction"].ToString() == "rtl"){@sponser.TitleAr}else{@sponser.TitleEn}"
+                         loading="lazy" />
+                    <div class="card-body">
+                        <h5 class="card-title">@if (ViewData["Direction"].ToString() == "rtl"){
+                        @:عرض خاص
+                                                }else
+                        {
+
+                                @:Special offer
+                        }
+ </h5>
+                        <p class="card-text">@if (ViewData["Direction"].ToString() == "rtl"){
+                        @sponser.TitleAr
+                                                }else
+                        {
+
+                            @sponser.TitleEn
+                        }
+</p>
+                        <div class="offer-full-description-container">
+                            <p class="offer-full-description line-clamp">
+                                @if (ViewData["Direction"]?.ToString() == "rtl")
+                                {
+                                    @Html.Raw(sponser.DescriptionAr)
+                                }
+                                else
+                                {
+                                    @Html.Raw(sponser.DescriptionEn)
+                                }
+                            </p>
+
+                            <button id="toggle-description" class="btn btn-link" style="color:#034c53; background-color:transparent;">
+                                @(ViewData["Direction"]?.ToString() == "rtl" ? "عرض المزيد" : "Show More")
+                            </button>
+                        </div>
+
+
+                        <a href="https://wa.me/+201001088937?text=Hello%20I%20need%20the%20code%20for%20recipe%20@Model" class="btn btn-primary">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:اشتري الآن
+                            }
+                            else
+                            {
+
+                                @:Buy Now
+                            }
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            }
+        </div>
+    </div>
+</section>
+<section id="about-us" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Text Column -->
+            <div class="col-lg-6 text-center text-lg-start"
+                 data-aos="fade-right"
+                 data-aos-duration="1200">
+                <h2 class="mb-4 animate-border"> @ViewData["whoUS"] </h2>
+                <p class="fs-5 animate-text">
+                    @ViewData["whoDesc"]
+                </p>
+                <p class="animate-text" data-aos-delay="200">
+                    @ViewData["whoDesc2"]
+                </p>
+                <div class="mt-4" data-aos="fade-up" data-aos-delay="400">
+                    <a asp-action="contact"
+                       class="btn btn-primary rounded-pill px-4 py-2 me-2"
+                       style="
+                  background-color: var(--primary-dark);
+                  border-color: var(--primary-dark);
+                ">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:اتصل بنا
+                        }
+                        else
+                        {
+
+                            @:Contact US
+                        }
+                    </a>
+                    <a href="#"
+                       class="btn rounded-pill px-4 py-2"
+                       style="
+                  color: var(--primary-dark);
+                  border-color: var(--primary-dark);
+                ">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:معرفة المزيد
+                        }
+                        else
+                        {
+
+                            @:Know More
+                        }
+                    </a>
+                </div>
+            </div>
+            <!-- Image Column -->
+            <div class="col-lg-6 text-center"
+                 data-aos="fade-left"
+                 data-aos-duration="1200">
+                <img src="~/assets/What-Does-a-Pharmaceutical-Scientist-Do_.jpg"
+                     alt="About Us Image"
+                     class="img-fluid rounded-circle shadow-lg floating-image"
+                     style="object-fit: cover; width: 500px; height: 500px" />
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const desc = document.querySelector('.offer-full-description');
+        const toggleBtn = document.getElementById('toggle-description');
+
+        if (!desc || !toggleBtn) return;
+
+        const direction = document.documentElement.getAttribute('dir') || 'rtl';
+
+        toggleBtn.addEventListener('click', function () {
+            desc.classList.toggle('expanded');
+            const isExpanded = desc.classList.contains('expanded');
+            toggleBtn.textContent = direction === 'rtl'
+                ? (isExpanded ? 'عرض أقل' : 'عرض المزيد')
+                : (isExpanded ? 'Show Less' : 'Show More');
+        });
+    });
+</script>
+
+

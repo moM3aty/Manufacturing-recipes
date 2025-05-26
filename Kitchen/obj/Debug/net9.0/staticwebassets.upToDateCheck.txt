@@ -1,0 +1,167 @@
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\favicon.ico
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation\LICENSE.md
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\css\Agriculture.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\js\script.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\css\style.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\dist\jquery.min.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\js\Agriculture.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery\LICENSE.txt
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+E:\GMT Web\Kitchen\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\assets\11.jpg
+wwwroot\assets\123.jpg
+wwwroot\assets\1234.jpg
+wwwroot\assets\45678.jfif
+wwwroot\assets\456789.jpg
+wwwroot\assets\61Z-oVOwYuL._AC_SL1001_.jpg
+wwwroot\assets\argan.jpg
+wwwroot\assets\banana.jpg
+wwwroot\assets\blackseed.jpeg
+wwwroot\assets\chemil.jpg
+wwwroot\assets\Cosmetic-Manufacturers-in-Savli (1).jpg
+wwwroot\assets\cough.jpeg
+wwwroot\assets\cream.jpg
+wwwroot\assets\flour.jpeg
+wwwroot\assets\green.jpg
+wwwroot\assets\Hcee4b696ece0433bb5bca7dc3193235d9.jpg
+wwwroot\assets\hedro.webp
+wwwroot\assets\honey.webp
+wwwroot\assets\houny.jpg
+wwwroot\assets\image.jpg
+wwwroot\assets\images (1).jpg
+wwwroot\assets\images (4).jpg
+wwwroot\assets\images.jpg
+wwwroot\assets\logo.png
+wwwroot\assets\mana3a.jpeg
+wwwroot\assets\medcine.jpg
+wwwroot\assets\olive.jpeg
+wwwroot\assets\pasta.jpg
+wwwroot\assets\retinol.jpg
+wwwroot\assets\sabbar.jpg
+wwwroot\assets\sectionfood.webp
+wwwroot\assets\sectionparphc.jpg
+wwwroot\assets\spices.jpeg
+wwwroot\assets\tomatosauce.jpg
+wwwroot\assets\vc.webp
+wwwroot\assets\What-Does-a-Pharmaceutical-Scientist-Do_.jpg
+wwwroot\assets\za3ter.jpeg
+wwwroot\css\Agriculture.css
+wwwroot\css\style.css
+wwwroot\favicon.ico
+wwwroot\js\Agriculture.js
+wwwroot\js\script.js
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\dist\jquery.slim.js
+wwwroot\lib\jquery\dist\jquery.slim.min.js
+wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\lib\jquery\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\recipes\f016a88c-33d7-4323-b231-8cc288eedf1a.zip

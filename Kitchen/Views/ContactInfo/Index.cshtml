@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ContactInfo>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2 class="text-right">بيانات التواصل</h2>
+
+<div class="mb-3 text-right">
+    <a asp-action="Create" class="btn btn-success">إضافة جديد</a>
+</div>
+
+<table class="table table-bordered text-right" dir="rtl">
+    <thead class="thead-dark">
+        <tr>
+            <th>نوع جهة الاتصال</th>
+            <th>القيمة</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        var typeLabel = item.Type switch
+                        {
+                            "Email" => "البريد الإلكتروني",
+                            "Phone" => "الهاتف / واتساب",
+                            "Vodafone" => "فودافون كاش",
+                            _ => item.Type
+                        };
+                    }
+                    @typeLabel
+                </td>
+                <td>@item.Value</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('هل أنت متأكد من الحذف؟');">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

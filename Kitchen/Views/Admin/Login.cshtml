@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<h2 style="text-align: center; color: #333; font-size: 2em; font-family: 'Arial', sans-serif; margin:50px;">
+    تسجيل الدخول
+</h2>
+
+<form method="post" style="max-width: 400px; margin: 0 auto; padding: 40px; background: #f9f9f9; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+    <div style="margin-bottom: 20px;">
+        <input type="email" name="email" 
+               placeholder='البريد الإلكتروني' 
+               required
+               style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; transition: all 0.3s ease; background: #fff;" />
+    </div>
+    <div style="margin-bottom: 30px;">
+        <input type="password" name="password" 
+               placeholder='كلمة المرور' 
+               required
+               style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em; transition: all 0.3s ease; background: #fff;" />
+    </div>
+    <button type="submit"
+            style="width: 100%; padding: 12px; background: #ff80b3; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background 0.3s ease;">
+        تسجيل الدخول
+    </button>
+</form>
+
+<style>
+    input:focus {
+        border-color: #ff80b3;
+        box-shadow: 0 0 5px rgba(255, 128, 179, 0.5);
+    }
+    button:hover {
+        background: #ff66b2;
+    }
+</style>

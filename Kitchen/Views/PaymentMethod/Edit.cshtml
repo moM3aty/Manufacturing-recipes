@@ -1,0 +1,30 @@
+﻿@model PaymentMethod
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2 class="text-center">@(ViewContext.RouteData.Values["action"].ToString() == "Create" ? "إضافة طريقة دفع" : "تعديل طريقة دفع")</h2>
+
+<form asp-action="@ViewContext.RouteData.Values["action"]">
+    <div class="form-group">
+        <label>نوع الطريقة عربي</label>
+        <input asp-for="TypeAr" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>نوع الطريقة انجليزي</label>
+        <input asp-for="TypeEn" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>رقم الحساب</label>
+        <input asp-for="AccountNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>رقم IBAN</label>
+        <input asp-for="IBAN" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>بريد إنستاباي</label>
+        <input asp-for="InstapayEmail" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">حفظ</button>
+</form>

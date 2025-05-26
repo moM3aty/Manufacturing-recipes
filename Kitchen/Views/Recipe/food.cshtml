@@ -1,0 +1,396 @@
+﻿@{
+    var direction = ViewData["Direction"]?.ToString();
+}
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<style>
+    :root {
+        --primary-dark: #034c53;
+        --primary: #007074;
+        --accent: #f38c79;
+        --accent-light: #ffc1b4;
+    }
+
+
+    .bg-gradient-primary {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% ) !important;
+    }
+
+    .btn-accent {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+    }
+
+        .btn-accent:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-header {
+        background: linear-gradient( 135deg, var(--primary) 0%, var(--primary-dark) 100% );
+        color: white;
+        border-radius: 10px 10px 0 0 !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category-badge {
+        background-color: var(--accent-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    footer {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% );
+        color: white;
+    }
+
+    .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not( .valid-feedback ):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 0.375rem;
+        border-bottom-left-radius: 0.375rem;
+    }
+
+    .input-group > .form-control:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0.375rem;
+        border-bottom-right-radius: 0.375rem;
+    }
+
+    .recipe-code {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+
+    .card-footer-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .more-recipes {
+        display: none;
+    }
+
+    .chemical-icon {
+        background-color: rgba(255, 193, 180, 0.2);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .logo-subtitle {
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-top: -5px;
+    }
+
+    /* Add hover animations */
+    .card {
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        transition: all 0.3s ease;
+        margin: 5px 0;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Hero buttons responsive styles */
+    .hero-buttons {
+        margin-top: 20px;
+    }
+
+        .hero-buttons .btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .hero-buttons .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+    .chemical-icon:hover {
+        transform: rotate(360deg);
+        background-color: rgba(255, 193, 180, 0.4);
+    }
+
+
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Add pulse effect to badges */
+
+
+    .category-badge {
+        animation: pulse 2s infinite;
+    }
+
+  
+</style>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 order-2 order-lg-1 text-lg-right">
+                <h1 class="display-4 fw-bold mb-4" style="color: var(--primary-dark)" data-aos="fade-up" data-aos-delay="100">
+                    @if (direction == "rtl")
+                    {
+                        @:القسم الغذائي<br />
+                        <span class="h3" style="color: var(--accent)">القسم الغذائي</span>
+                    }
+                    else
+                    {
+                        @:Food Section<br />
+                        <span class="h3" style="color: var(--accent)">Food Section</span>
+                    }
+                </h1>
+                <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">
+                    @(direction == "rtl"
+                                        ? "اكتشف مجموعتنا المتنوعة من المنتجات الغذائية والمكونات الطبيعية. جميع منتجاتنا مصنعة وفق أعلى معايير الجودة والسلامة."
+                                        : "Discover our diverse range of food products and natural ingredients. All our products are manufactured to the highest standards of quality and safety.")
+                </p>
+                <div class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#recipes" class="btn btn-accent btn-lg rounded-pill px-4">
+                        @(direction == "rtl" ? "تصفح المنتجات" : "Browse Products")
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                        @(direction == "rtl" ? "المزيد من المعلومات" : "More Information")
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                <img src="~/assets/sectionfood.webp" class="hero-img" alt="صورة غذائية" loading="eager" data-aos="fade-left" data-aos-delay="400" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recipe Categories -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-md-6">
+                <div class="card h-100 filter-category" data-category="herbal">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <i class='bx bxs-baguette' style="font-size: 40px; color: var(--primary-dark);"></i>
+                        </div>
+                        <h4 class="card-title">
+                            @(direction == "rtl" ? "تصنيع غذائي" : "Food Industry")
+                        </h4>
+                   
+                        <p class="card-text">
+                            @(direction == "rtl" ? "منتجات غذائية مصنعة بجودة عالية" : "High-quality manufactured food products")
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-6">
+                <div class="card h-100 filter-category" data-category="medicine">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <i class='bx bxs-bowl-rice' style="font-size: 40px; color: var(--primary-dark);"></i>
+                        </div>
+                        <h4 class="card-title">
+                            @(direction == "rtl" ? "غذاء ومطبخ" : "Food and Kitchen")
+                        </h4>
+                    
+                        <p class="card-text">
+                            @(direction == "rtl" ? "مكونات طبيعية لتحضير أشهى الأطباق" : "Natural ingredients for preparing delicious dishes")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recipes" class="py-5" dir="@ViewData["Direction"]">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 style="color: var(--primary)">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:منتجات غذائيه مميزة
+                }
+                else
+                {
+                    @:Special food products
+                }
+            </h2>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <span class="badge category-badge float-start">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.SloganAr
+                                }
+                                else
+                                {
+                                    @recipe.SloganEn
+                                }
+                            </span>
+                            <h5 class="mb-0">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.TitleAr
+                                }
+                                else
+                                {
+                                    @recipe.TitleEn
+                                }
+                            </h5>
+                        </div>
+                        <img src="~/@recipe.ImagePath" alt="@recipe.TitleAr" class="card-img-top" />
+                        <div class="card-body">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @recipe.DescriptionAr
+                            }
+                            else
+                            {
+                                @recipe.DescriptionEn
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent border-0 flex-column">
+                            <div class="card-footer-buttons">
+                                <div class="d-flex justify-content-between flex-row" style="width: 100%">
+                                    <span class="fw-bold text-accent" style="color: var(--accent)">
+                                        @recipe.Price.ToString("F2") $
+                                    </span>
+                                </div>
+                                <a class="btn btn-sm btn-accent" style="width: 100%" href="/Recipe/EnterCode/@recipe.Id">
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:تحميل
+                                    }
+                                    else
+                                    {
+                                        @:Download
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5 bg-white text-white" dir="@ViewData["Direction"]">
+    <div class="container py-4 text-center">
+        <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:هل أنت مستعد لتحويل إنتاجك الغذائي؟
+            }
+            else
+            {
+                @:Are you ready to transform your food production?
+            }
+        </h2>
+        <p class="lead mb-5" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:انضم إلى آلاف الصناعيين والمهنيين  الذين يثقون بتركيباتنا لتحقيق محاصيل أفضل وزيادة في الإنتاج.
+            }
+            else
+            {
+                @:Join the thousands of industrialists and professionals who trust our formulas for better crops and increased production.
+            }
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#"
+               class="btn btn-light btn-lg rounded-pill px-4"
+               style="color: var(--primary-dark); border: 1px solid var(--primary-dark); background-color: transparent;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:ابدأ الآن
+                }
+                else
+                {
+                    @:Get Started
+                }
+            </a>
+            <a asp-action="contact"
+               class="btn btn-outline-light btn-lg rounded-pill px-4"
+               style="background-color: var(--primary-dark); color: white;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:اتصل بنا
+                }
+                else
+                {
+                    @:Contact Us
+                }
+            </a>
+        </div>
+    </div>
+</section>

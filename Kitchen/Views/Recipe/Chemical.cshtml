@@ -1,0 +1,586 @@
+﻿<style>
+    :root {
+        --primary-dark: #034c53;
+        --primary: #007074;
+        --accent: #f38c79;
+        --accent-light: #ffc1b4;
+    }
+
+    body {
+        font-family: "Tajawal", sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        min-height: 100vh;
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        color: var(--primary-dark);
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-text {
+        margin-right: 10px;
+    }
+
+    .logo-main {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 0;
+    }
+
+    .logo-subtitle {
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .logo-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+
+
+    .bg-gradient-primary {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% ) !important;
+    }
+
+    .btn-accent {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+    }
+
+        .btn-accent:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-header {
+        background: linear-gradient( 135deg, var(--primary) 0%, var(--primary-dark) 100% );
+        color: white;
+        border-radius: 10px 10px 0 0 !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .category-badge {
+        background-color: var(--accent-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    footer {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% );
+        color: white;
+    }
+
+    .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not( .valid-feedback ):not(.invalid-tooltip):not(.invalid-feedback) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 0.375rem;
+        border-bottom-left-radius: 0.375rem;
+    }
+
+    .input-group > .form-control:not(:first-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0.375rem;
+        border-bottom-right-radius: 0.375rem;
+    }
+
+    .recipe-code {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+
+    .card-footer-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .more-recipes {
+        display: none;
+    }
+
+    .chemical-icon {
+        background-color: rgba(255, 193, 180, 0.2);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .logo-subtitle {
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-top: -5px;
+    }
+
+    /* Add hover animations */
+    .card {
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        transition: all 0.3s ease;
+        margin: 5px 0;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Hero buttons responsive styles */
+    .hero-buttons {
+        margin-top: 20px;
+    }
+
+        .hero-buttons .btn {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .hero-buttons .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+
+
+    .chemical-icon:hover {
+        transform: rotate(360deg);
+        background-color: rgba(255, 193, 180, 0.4);
+    }
+
+
+
+    .fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    /* Add pulse effect to badges */
+
+
+    .category-badge {
+        animation: pulse 2s infinite;
+    }
+
+
+
+
+</style>
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 order-2 order-lg-1  text-lg-right">
+                <h1 class="display-4 fw-bold mb-4"
+                    style="color: var(--primary-dark)"
+                    data-aos="fade-up"
+                    data-aos-delay="100">
+                    @if (ViewData["Direction"]?.ToString() == "rtl")
+                    {
+                        @:وصفات التصنيع الكيميائي
+                    }
+                    else
+                    {
+                        @:Chemical Formulation Recipes
+                    }
+                </h1>
+                <span class="h3" style="color: var(--accent)">
+                    @if (ViewData["Direction"]?.ToString() == "rtl")
+                    {
+                        @:قسم كيميائي
+                    }
+                    else
+                    {
+                        @:Chemical Section
+                    }
+                </span>
+                <p class="lead my-4" data-aos="fade-up" data-aos-delay="200">
+                    @if (ViewData["Direction"]?.ToString() == "rtl")
+                    {
+                        @:تركيبات كيميائية دقيقة للصناعات المختلفة، مواد تنظيف، مستحضرات تجميل، مواد بناء، ومواد كيميائية متخصصة. مصممة وفق أعلى معايير الجودة.
+                    }
+                    else
+                    {
+                        @:Precision chemical formulations for various industries: cleaning products, cosmetics, construction materials, and specialized chemicals — designed to meet the highest quality standards.
+                    }
+                </p>
+                <div class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start"
+                     data-aos="fade-up"
+                     data-aos-delay="300">
+                    <a href="#recipes" class="btn btn-accent btn-lg rounded-pill px-4">
+                        @if (ViewData["Direction"]?.ToString() == "rtl")
+                        {
+                            @:تصفح الوصفات
+                        }
+                        else
+                        {
+                            @:Browse Recipes
+                        }
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                        @if (ViewData["Direction"]?.ToString() == "rtl")
+                        {
+                            @:المزيد من المعلومات
+                        }
+                        else
+                        {
+                            @:More Information
+                        }
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                <img src="https://img.freepik.com/free-photo/scientist-holding-green-chemicals_23-2148697238.jpg"
+                     class="hero-img"
+                     alt="@((ViewData["Direction"]?.ToString() == "rtl") ? "عالم كيميائي يحمل مواد كيميائية" : "Scientist holding chemical substances")"
+                     loading="eager"
+                     data-aos="fade-left"
+                     data-aos-delay="400" />
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-light" dir="@ViewData["Direction"]">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-sm-6 col-md-3">
+                <div class="card h-100 filter-category" data-category="all">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <svg width="40"
+                                 height="40"
+                                 fill="var(--primary-dark)"
+                                 viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.5 12c0-1.248-1.464-2.25-2.724-3.042-.86-.54-1.392-1.344-1.392-2.208V4.5a.75.75 0 0 0-.75-.75h-3.75a.75.75 0 0 0-.75.75v2.25c0 .864-.532 1.668-1.393 2.208C5.964 9.75 4.5 10.752 4.5 12c0 1.248 1.464 2.25 2.724 3.042.86.54 1.392 1.344 1.392 2.208v2.25a.75.75 0 0 0 .75.75h3.75a.75.75 0 0 0 .75-.75v-2.25c0-.864.532-1.668 1.393-2.208C18.036 14.25 19.5 13.248 19.5 12Z"></path>
+                                <path d="M12 16.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="card-title">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:المواد الكيميائية العامة
+                            }
+                            else
+                            {
+                                @:General Chemical Materials
+                            }
+                        </h4>
+                        <p class="card-text">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:تركيبات للاستخدامات الصناعية العامة
+                            }
+                            else
+                            {
+                                @:Formulations for general industrial uses
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3">
+                <div class="card h-100 filter-category" data-category="cleaning">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <svg width="40"
+                                 height="40"
+                                 fill="var(--primary-dark)"
+                                 viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="m14.25 14.5.53-.53a.75.75 0 0 0-1.06-1.06l-.53.53-.53-.53a.75.75 0 0 0-1.06 1.06l.53.53-.53.53a.75.75 0 0 0 1.06 1.06l.53-.53.53.53a.75.75 0 0 0 1.06-1.06l-.53-.53Z"></path>
+                                <path d="M12 2.25c-5.376 0-9.75 4.374-9.75 9.75s4.374 9.75 9.75 9.75 9.75-4.374 9.75-9.75S17.376 2.25 12 2.25ZM3.75 12a8.25 8.25 0 0 1 13.794-6.166L5.584 17.544A8.214 8.214 0 0 1 3.75 12Zm4.706 6.416L18.416 8.456A8.25 8.25 0 0 1 8.456 18.416Z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="card-title">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:مواد التنظيف
+                            }
+                            else
+                            {
+                                @:Cleaning Materials
+                            }
+                        </h4>
+                        <p class="card-text">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:تركيبات لجميع أنواع مواد التنظيف
+                            }
+                            else
+                            {
+                                @:Formulations for all types of cleaning materials
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3">
+                <div class="card h-100 filter-category" data-category="cosmetics">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <svg width="40"
+                                 height="40"
+                                 fill="var(--primary-dark)"
+                                 viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z"></path>
+                                <path fill-rule="evenodd"
+                                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h4 class="card-title">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:مستحضرات التجميل
+                            }
+                            else
+                            {
+                                @:Cosmetics
+                            }
+                        </h4>
+                        <p class="card-text">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:تركيبات لمستحضرات التجميل والعناية
+                            }
+                            else
+                            {
+                                @:Formulations for cosmetics and personal care
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-3">
+                <div class="card h-100 filter-category" data-category="construction">
+                    <div class="card-body text-center p-4">
+                        <div class="chemical-icon">
+                            <svg width="40"
+                                 height="40"
+                                 fill="var(--primary-dark)"
+                                 viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.006 3.705a.75.75 0 1 0-.512-1.41L6 6.838V3a.75.75 0 0 0-.75-.75h-1.5A.75.75 0 0 0 3 3v4.93l-1.006.365a.75.75 0 0 0 .512 1.41l16.5-6Z"></path>
+                                <path fill-rule="evenodd"
+                                      d="M3.019 11.114 18 5.667v3.421l4.006 1.454a.75.75 0 1 1-.512 1.41l-.494-.18v8.475h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3v-9.129l.019-.007ZM18 20.25v-9.566l1.5.546v9.02H18Zm-9-6a.75.75 0 0 0-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75H9Z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h4 class="card-title">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:مواد البناء
+                            }
+                            else
+                            {
+                                @:Construction Materials
+                            }
+                        </h4>
+                        <p class="card-text">
+                            @if (ViewData["Direction"]?.ToString() == "rtl")
+                            {
+                                @:تركيبات كيميائية لصناعة البناء
+                            }
+                            else
+                            {
+                                @:Chemical formulations for the construction industry
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="recipes" class="py-5" dir="@ViewData["Direction"]">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 style="color: var(--primary)">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:وصفات كيميائيه مميزة
+                }
+                else
+                {
+                    @:Special chemical recipes
+                }
+            </h2>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <span class="badge category-badge float-start">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.SloganAr
+                                }
+                                else
+                                {
+                                    @recipe.SloganEn
+                                }
+                            </span>
+                            <h5 class="mb-0">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.TitleAr
+                                }
+                                else
+                                {
+                                    @recipe.TitleEn
+                                }
+                            </h5>
+                        </div>
+                        <img src="~/@recipe.ImagePath" alt="@recipe.TitleAr" class="card-img-top" />
+                        <div class="card-body">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @recipe.DescriptionAr
+                            }
+                            else
+                            {
+                                @recipe.DescriptionEn
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent border-0 flex-column">
+                            <div class="card-footer-buttons">
+                                <div class="d-flex justify-content-between flex-row" style="width: 100%">
+                                    <span class="fw-bold text-accent" style="color: var(--accent)">
+                                        @recipe.Price.ToString("F2") $
+                                    </span>
+                                    <span class="recipe-code">AGR-001</span>
+                                </div>
+                                <a style="width: 100%" class="btn btn-sm btn-accent" href="/Recipe/EnterCode/@recipe.Id">
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:تحميل
+                                    }
+                                    else
+                                    {
+                                        @:Download
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5 bg-white text-white" dir="@ViewData["Direction"]">
+    <div class="container py-4 text-center">
+        <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:هل أنت مستعد لتحويل إنتاجك الكيميائي؟
+            }
+            else
+            {
+                @:Are you ready to transform your Chemical production?
+            }
+        </h2>
+        <p class="lead mb-5" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:انضم إلى آلاف الصناعيين والمهنيين  الذين يثقون بتركيباتنا لتحقيق محاصيل أفضل وزيادة في الإنتاج.
+            }
+            else
+            {
+                @:Join the thousands of industrialists and professionals who trust our formulas for better crops and increased production.
+            }
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#"
+               class="btn btn-light btn-lg rounded-pill px-4"
+               style="color: var(--primary-dark); border: 1px solid var(--primary-dark); background-color: transparent;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:ابدأ الآن
+                }
+                else
+                {
+                    @:Get Started
+                }
+            </a>
+            <a asp-action="contact"
+               class="btn btn-outline-light btn-lg rounded-pill px-4"
+               style="background-color: var(--primary-dark); color: white;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:اتصل بنا
+                }
+                else
+                {
+                    @:Contact Us
+                }
+            </a>
+        </div>
+    </div>
+</section>

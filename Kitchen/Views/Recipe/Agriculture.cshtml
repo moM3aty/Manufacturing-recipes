@@ -1,0 +1,324 @@
+﻿<link rel="stylesheet" href="~/css/Agriculture.css" />
+
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4"
+                    style="color: var(--primary-dark)"
+                    data-aos="fade-up"
+                    data-aos-delay="100">
+                    @if (ViewData["Direction"].ToString() == "rtl")
+                    {
+                        @:وصفات التصنيع الزراعي
+                    }
+                    else
+                    {
+                        @:Agricultural Formulation Recipes
+                    }
+                </h1>
+                <span class="h3" style="color: var(--accent)">
+                    @if (ViewData["Direction"].ToString() == "rtl")
+                    {
+                        @:قسم الزراعي
+                    }
+                    else
+                    {
+                        @:Agriculture Section
+                    }
+                </span>
+                <p class="lead my-4">
+                    @if (ViewData["Direction"].ToString() == "rtl")
+                    {
+                        @:تركيبات مميزة لحماية المحاصيل، تحسين التربة، وزيادة الإنتاجية الزراعية. مصممة علمياً لتحقيق أفضل النتائج.
+                    }
+                    else
+                    {
+                        @:Unique formulations for crop protection, soil improvement, and increased agricultural productivity. Scientifically designed for optimal results.
+                    }
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="#recipes" class="btn btn-accent2    btn-lg rounded-pill px-4 hero-btn1">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:تصفح الوصفات
+                        }
+                        else
+                        {
+                            @:Browse Recipes
+                        }
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill px-4 hero-btn2">
+                        @if (ViewData["Direction"].ToString() == "rtl")
+                        {
+                            @:المزيد من المعلومات
+                        }
+                        else
+                        {
+                            @:More Information
+                        }
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="~/assets/green.jpg" alt="حقل زراعي" class="img-fluid rounded-3 shadow hero-img" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light" dir="@ViewData["Direction"]">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 filter-category" data-category="all">
+                    <div class="card-body text-center p-4">
+                        <div class="category-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4 class="card-title mb-2">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:حلول عضوية
+                            }
+                            else
+                            {
+                                @:Organic Solutions
+                            }
+                        </h4>
+                        <p class="card-text mb-0">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:وصفات صديقة للبيئة
+                            }
+                            else
+                            {
+                                @:Eco-friendly recipes
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 filter-category" data-category="protection">
+                    <div class="card-body text-center p-4">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="card-title mb-2">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:حماية المحاصيل
+                            }
+                            else
+                            {
+                                @:Crop Protection
+                            }
+                        </h4>
+                        <p class="card-text mb-0">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:تركيبات المبيدات الحشرية والفطرية
+                            }
+                            else
+                            {
+                                @:Insecticide and fungicide formulations
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 filter-category" data-category="soil">
+                    <div class="card-body text-center p-4">
+                        <div class="category-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4 class="card-title mb-2">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:محسنات التربة
+                            }
+                            else
+                            {
+                                @:Soil Improvers
+                            }
+                        </h4>
+                        <p class="card-text mb-0">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:تركيبات لتحسين جودة التربة
+                            }
+                            else
+                            {
+                                @:Formulations to improve soil quality
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 filter-category" data-category="growth">
+                    <div class="card-body text-center p-4">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="card-title mb-2">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:منشطات النمو
+                            }
+                            else
+                            {
+                                @:Growth Promoters
+                            }
+                        </h4>
+                        <p class="card-text mb-0">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @:خلطات لتسريع نمو النبات
+                            }
+                            else
+                            {
+                                @:Mixtures to accelerate plant growth
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="recipes" class="py-5" dir="@ViewData["Direction"]">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 style="color: var(--primary)">
+                @if (ViewData["Direction"].ToString() == "rtl")
+                {
+                    @:وصفات زراعية مميزة
+                }
+                else
+                {
+                    @:Featured Agricultural Recipes
+                }
+            </h2>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <span class="badge category-badge float-start">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.SloganAr
+                                }
+                                else
+                                {
+                                    @recipe.SloganEn
+                                }
+                            </span>
+                            <h5 class="mb-0">
+                                @if (ViewData["Direction"].ToString() == "rtl")
+                                {
+                                    @recipe.TitleAr
+                                }
+                                else
+                                {
+                                    @recipe.TitleEn
+                                }
+                            </h5>
+                        </div>
+                        <img src="~/@recipe.ImagePath" alt="@recipe.TitleAr" class="card-img-top" />
+                        <div class="card-body">
+                            @if (ViewData["Direction"].ToString() == "rtl")
+                            {
+                                @recipe.DescriptionAr
+                            }
+                            else
+                            {
+                                @recipe.DescriptionEn
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent border-0 flex-column">
+                            <div class="card-footer-buttons">
+                                <div class="d-flex justify-content-between flex-row" style="width: 100%">
+                                    <span class="fw-bold text-accent" style="color: var(--accent)">
+                                        @recipe.Price.ToString("F2") $
+                                    </span>
+                                </div>
+                                <a  class="btn btn-sm btn-accent" style="width: 100%" href="/Recipe/EnterCode/@recipe.Id">
+                                    @if (ViewData["Direction"].ToString() == "rtl")
+                                    {
+                                        @:تحميل
+                                    }
+                                    else
+                                    {
+                                        @:Download
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-white text-white" dir="@ViewData["Direction"]">
+    <div class="container py-4 text-center">
+        <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:هل أنت مستعد لتحويل إنتاجك الزراعي؟
+            }
+            else
+            {
+                @:Are you ready to transform your agricultural production?
+            }
+        </h2>
+        <p class="lead mb-5" style="color: var(--primary-dark)">
+            @if (ViewData["Direction"]?.ToString() == "rtl")
+            {
+                @:انضم إلى آلاف المزارعين والمهنيين الزراعيين الذين يثقون بتركيباتنا لتحقيق محاصيل أفضل وزيادة في الإنتاج.
+            }
+            else
+            {
+                @:Join thousands of farmers and agricultural professionals who trust our formulas to achieve better crops and increased yields.
+            }
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#"
+               class="btn btn-light btn-lg rounded-pill px-4"
+               style="color: var(--primary-dark); border: 1px solid var(--primary-dark); background-color: transparent;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:ابدأ الآن
+                }
+                else
+                {
+                    @:Get Started
+                }
+            </a>
+            <a asp-action="contact"
+               class="btn btn-outline-light btn-lg rounded-pill px-4"
+               style="background-color: var(--primary-dark); color: white;">
+                @if (ViewData["Direction"]?.ToString() == "rtl")
+                {
+                    @:اتصل بنا
+                }
+                else
+                {
+                    @:Contact Us
+                }
+            </a>
+        </div>
+    </div>
+</section>
+<script src="js/Agriculture.js"></script>

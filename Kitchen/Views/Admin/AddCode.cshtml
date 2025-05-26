@@ -1,0 +1,118 @@
+﻿@model Kitchen.Models.Recipe
+
+@{
+    ViewData["Title"] = ViewData["Direction"]?.ToString() == "rtl" ? "إضافة كود للوصفة" : "Add Code to Recipe";
+    var isRtl = ViewData["Direction"]?.ToString() == "rtl";
+    var title = isRtl ? Model.TitleAr : Model.TitleEn;
+
+}
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<style>
+    body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        font-family: 'Cairo', sans-serif;
+        direction:rtl ;
+        margin: 0 auto;
+        padding: 0;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .code-container {
+        max-width: 500px;
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: 95px auto;
+    }
+
+    h2 {
+        color: #034C53;
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+        h2 + h2 {
+            font-size: 20px;
+            color: #007074;
+            margin-bottom: 25px;
+        }
+
+    label {
+        font-weight: 600;
+        color: #034C53;
+        display: block;
+        text-align: left;
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        margin-bottom: 25px;
+        transition: border-color 0.3s;
+    }
+
+        input[type="text"]:focus {
+            border-color: #007074;
+            outline: none;
+        }
+
+    button {
+        width: 100%;
+        background-color: #007074;
+        color: white;
+        border: none;
+        padding: 14px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 15px;
+    }
+
+        button:hover {
+            background-color: #034C53;
+        }
+
+    .back-link {
+        color: #007074;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 15px;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
+
+        .back-link:hover {
+            color: #034C53;
+            text-decoration: underline;
+        }
+
+</style>
+
+<div class="code-container">
+    <h2>@("إضافة كود للوصفة") @title</h2>
+
+    <form method="post" action="/Admin/AddCode">
+        <input type="hidden" name="RecipeId" value="@Model.Id" />
+
+        <label for="code" style="text-align:right">الكود</label>
+        <input type="text" name="Code" id="code" placeholder="أدخل الكود هنا"  required />
+
+        <button type="submit"> حفظ الكود </button>
+    </form>
+
+    <a href="/Admin/Dashboard" class="back-link">العودة إلى لوحة التحكم</a>
+</div>
