@@ -1,0 +1,291 @@
+﻿@{
+    var direction = ViewData["Direction"]?.ToString();
+}
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<style>
+    :root {
+        --primary-dark: #034c53;
+        --primary: #007074;
+        --accent: #f38c79;
+        --accent-light: #ffc1b4;
+    }
+
+    .bg-gradient-primary {
+        background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% ) !important;
+    }
+
+    .btn-accent {
+        background-color: var(--accent);
+        color: white;
+        border: none;
+    }
+
+        .btn-accent:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+    .card-header {
+        background: linear-gradient( 135deg, var(--primary) 0%, var(--primary-dark) 100% );
+        color: white;
+        border-radius: 10px 10px 0 0 !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }   
+
+    .category-badge {
+        background-color: var(--accent-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+        0%
+
+    {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+    }
+
+    .service-icon {
+        background-color: rgba(255, 193, 180, 0.2);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        transition: transform 0.5s ease, background-color 0.3s ease;
+    }
+
+        .service-icon:hover {
+            transform: rotate(360deg);
+            background-color: rgba(255, 193, 180, 0.4);
+        }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+        margin: 5px 0;
+    }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    .hero-buttons {
+        margin-top: 20px;
+    }
+
+        .hero-buttons .btn {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .hero-buttons .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+</style>
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 order-2 order-lg-1 @(direction == "rtl" ? "text-lg-right" : "text-lg-left")">
+                <h1 class="display-4 fw-bold mb-4" style="color: var(--primary-dark);" data-aos="fade-up">
+                    @if (direction == "rtl")
+                    {
+                        @:نماذج صناعية دقيقة<br />
+                        <span class="h3" style="color: var(--accent);">من الفكرة إلى الواقع الملموس</span>
+                    }
+                    else
+                    {
+                        @:Precise Industrial Models<br />
+                        <span class="h3" style="color: var(--accent);">From Concept to Tangible Reality</span>
+                    }
+                </h1>
+                <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                    @(direction == "rtl"
+                                        ? "نحن متخصصون في تصميم وتصنيع النماذج الصناعية بكافة أنواعها، مساعدينك على اختبار تصميماتك وعرض منتجاتك بأعلى جودة."
+                                        : "We specialize in designing and manufacturing all types of industrial models, helping you test your designs and showcase your products with the highest quality.")
+                </p>
+                <div class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#models" class="btn btn-accent btn-lg rounded-pill px-4">
+                        @(direction == "rtl" ? "استكشف النماذج" : "Explore Models")
+                    </a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                        @(direction == "rtl" ? "المزيد من المعلومات" : "More Information")
+                    </a>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                <img src="~/assets/industrialModels.jpg" class="hero-img" alt="نماذج صناعية" loading="eager" data-aos="fade-left" data-aos-delay="300" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--primary-dark);">@(direction == "rtl" ? "أنواع النماذج التي نتقنها" : "Types of Models We Master")</h2>
+            <p class="text-muted">@(direction == "rtl" ? "سواء كنت بحاجة إلى اختبار وظيفة، أو تقييم جمالي، أو عرض فكرة، لدينا الحل." : "Whether you need to test functionality, evaluate aesthetics, or present an idea, we have the solution.")</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class='bx bxs-cube-alt' style="font-size: 40px; color: var(--primary-dark);"></i>
+                        </div>
+                        <h4 class="card-title">
+                            @(direction == "rtl" ? "نماذج أولية" : "Prototypes")
+                        </h4>
+                        <p class="card-text">
+                            @(direction == "rtl" ? "نماذج أولية سريعة لاختبار المفهوم الأساسي والتحقق من صلاحية التصميم قبل الإنتاج." : "Rapid prototypes to test the basic concept and validate the design before production.")
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class='bx bx-cog' style="font-size: 40px; color: var(--primary-dark);"></i>
+                        </div>
+                        <h4 class="card-title">
+                            @(direction == "rtl" ? "نماذج وظيفية" : "Functional Models")
+                        </h4>
+                        <p class="card-text">
+                            @(direction == "rtl" ? "نماذج عالية الدقة تعمل كنسخة طبق الأصل للمنتج النهائي لاختبار الأداء الوظيفي." : "High-fidelity models that function as a replica of the final product to test functionality.")
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class='bx bxs-palette' style="font-size: 40px; color: var(--primary-dark);"></i>
+                        </div>
+                        <h4 class="card-title">
+                            @(direction == "rtl" ? "نماذج زخرفية" : "Aesthetic Models")
+                        </h4>
+                        <p class="card-text">
+                            @(direction == "rtl" ? "نماذج تركز على الشكل الخارجي، الملمس، والألوان لعرض المنتج النهائي بشكل جذاب." : "Models focusing on the external shape, texture, and colors to present the final product attractively.")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="models" class="py-5" dir="@ViewData["Direction"]">
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 style="color: var(--primary)">
+                @(direction == "rtl" ? "أحدث أعمالنا" : "Our Latest Work")
+            </h2>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var industrialModel in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <span class="badge category-badge float-start">
+                                @(direction == "rtl" ? industrialModel.SloganAr : industrialModel.SloganEn)
+                            </span>
+                            <h5 class="mb-0">
+                                @(direction == "rtl" ? industrialModel.TitleAr : industrialModel.TitleEn)
+                            </h5>
+                        </div>
+                        <img src="~/@industrialModel.ImagePath" alt="@industrialModel.TitleAr" class="card-img-top" />
+                        <div class="card-body">
+                            <p>
+                                @(direction == "rtl" ? industrialModel.DescriptionAr : industrialModel.DescriptionEn)
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold" style="color: var(--accent)">
+                                   @industrialModel.Price.ToString("C")
+                                </span>
+                                <a class="btn btn-sm btn-accent" href="/IndustrialModel/EnterCode/@industrialModel.Id">
+                                    @(direction == "rtl" ? "تحميل" : "Download")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-white text-white" dir="@ViewData["Direction"]">
+    <div class="container py-4 text-center">
+        <h2 class="display-5 fw-bold mb-4" style="color: var(--primary-dark)">
+            @(direction == "rtl" ? "هل لديك فكرة مشروع؟" : "Have a Project Idea?")
+        </h2>
+        <p class="lead mb-5" style="color: var(--primary-dark);">
+            @(direction == "rtl" ? "دعنا نساعدك على تحويلها إلى نموذج ملموس. فريقنا جاهز للعمل معك خطوة بخطوة." : "Let us help you turn it into a tangible model. Our team is ready to work with you step by step.")
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#"
+               class="btn btn-light btn-lg rounded-pill px-4"
+               style="color: var(--primary-dark); border: 1px solid var(--primary-dark); background-color: transparent;">
+                @(direction == "rtl" ? "ابدأ مشروعك" : "Start Your Project")
+            </a>
+            <a asp-action="contact"
+               class="btn btn-outline-light btn-lg rounded-pill px-4"
+               style="background-color: var(--primary-dark); color: white;">
+                @(direction == "rtl" ? "اتصل بنا" : "Contact Us")
+            </a>
+        </div>
+    </div>
+</section>

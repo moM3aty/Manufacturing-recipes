@@ -17,129 +17,137 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Kitchen
 build_property.RootNamespace = Kitchen
-build_property.ProjectDir = F:\GMT Web\Kitchen\Kitchen\
+build_property.ProjectDir = G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = F:\GMT Web\Kitchen\Kitchen
+build_property.MSBuildProjectDirectory = G:\Developer\GMT Web\Manufacturing-recipes\Kitchen
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/AddCode.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/AddCode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkQ29kZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/AddRecipe.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/AddRecipe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkUmVjaXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/Dashboard.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/EditRecipe.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/EditRecipe.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFJlY2lwZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/EditSection.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/EditSection.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFNlY3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Admin/Login.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Admin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/ContactInfo/Create.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/ContactInfo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdEluZm9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/ContactInfo/Edit.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/ContactInfo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdEluZm9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/ContactInfo/Index.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/ContactInfo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdEluZm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Offers/Create.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Offers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Offers/Edit.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Offers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Offers/Index.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Offers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/PaymentMethod/Create.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/PaymentMethod/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/PaymentMethod/Edit.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/PaymentMethod/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/PaymentMethod/Index.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/PaymentMethod/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudE1ldGhvZFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/Agriculture.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/Agriculture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEFncmljdWx0dXJlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/Chemical.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/Chemical.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXENoZW1pY2FsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/clinic.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/clinic.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXGNsaW5pYy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/contact.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXGNvbnRhY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/EnterCode.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/EnterCode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEVudGVyQ29kZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/food.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/FeasibilityStudies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEZlYXNpYmlsaXR5U3R1ZGllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/food.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXGZvb2QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/Index.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Recipe/makeup.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/industrialModels.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXGluZHVzdHJpYWxNb2RlbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Recipe/makeup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXG1ha2V1cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Shared/Error.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Shared/_DashboardLayout.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Shared/_DashboardLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EYXNoYm9hcmRMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Shared/_ValidationScriptsPartial.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/_ViewImports.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/_ViewStart.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/GMT Web/Kitchen/Kitchen/Views/Shared/_Layout.cshtml]
+[G:/Developer/GMT Web/Manufacturing-recipes/Kitchen/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-52045iji9q

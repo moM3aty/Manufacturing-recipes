@@ -172,7 +172,10 @@
         new SelectListItem { Text = "كيميائي", Value = "Chemical" },
         new SelectListItem { Text = "غذائي", Value = "Nutritional" },
         new SelectListItem { Text = "صيدلي", Value = "Pharmacy" },
-        new SelectListItem { Text = "مستحضرات تجميل", Value = "cosmetics" }
+        new SelectListItem { Text = "مستحضرات تجميل", Value = "cosmetics" },
+        new SelectListItem { Text = "دراسات جدوى", Value = "Feasibility Studies" },
+        new SelectListItem { Text = " نماذج صناعية", Value = "Industrial Models" }
+
 
 };
 

@@ -31,7 +31,7 @@
 </head>
 <body >
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container text-center" style="width: 50%;margin:0 50px;padding: 0 50px">
+        <div class="container text-center" style="width: 35%;margin:0 50px;padding: 0 50px">
             <div class="logo-container">
                 <div class="logo-text d-flex align-items-center" style="gap: 10px;">
                     <img src="@Url.Content("~/assets/logo.png")"
@@ -100,6 +100,18 @@
                     <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "food") ? "fw-bold" : "")"
                        asp-controller="Recipe" asp-action="food" data-i18n="nav-contact">
                         @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الغذاء" : "Food")
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "FeasibilityStudies") ? "fw-bold" : "")"
+                       asp-controller="Recipe" asp-action="FeasibilityStudies" data-i18n="nav-contact">
+                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "دراسات جدوى" : "Feasibility studies")
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "industrialModels") ? "fw-bold" : "")"
+                       asp-controller="Recipe" asp-action="industrialModels" data-i18n="nav-contact">
+                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? " نماذج صناعية" : "Industrial Models")
                     </a>
                 </li>
                 <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">

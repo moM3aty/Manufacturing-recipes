@@ -104,6 +104,32 @@ namespace Kitchen.Controllers
             var recipes = _context.Recipes.Where(x => x.RecipeType == "Nutritional").ToList();
             return View(recipes);
         }
+        public IActionResult FeasibilityStudies()
+        {
+            var language = Request.Cookies["Language"] ?? "ar";
+            var direction = language == "ar" ? "rtl" : "ltr";
+
+            ViewData["Direction"] = direction;
+            ViewData["Language"] = language;
+            ViewData["Controller"] = "Recipe";
+            ViewData["Action"] = "FeasibilityStudies";
+
+            var recipes = _context.Recipes.Where(x => x.RecipeType == "Feasibility Studies").ToList();
+            return View(recipes);
+        }
+        public IActionResult industrialModels()
+        {
+            var language = Request.Cookies["Language"] ?? "ar";
+            var direction = language == "ar" ? "rtl" : "ltr";
+
+            ViewData["Direction"] = direction;
+            ViewData["Language"] = language;
+            ViewData["Controller"] = "Recipe";
+            ViewData["Action"] = "industrialModels";
+
+            var recipes = _context.Recipes.Where(x => x.RecipeType == "Industrial Models").ToList();
+            return View(recipes);
+        }
         public IActionResult Contact()
         {
             var language = Request.Cookies["Language"] ?? "ar";
