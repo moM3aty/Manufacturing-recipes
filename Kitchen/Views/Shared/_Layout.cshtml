@@ -277,16 +277,14 @@
         function handleScroll() {
           if (initialLoad) {
             AOS.init({
-              once: true // This option ensures elements are only animated once
+              once: true 
             });
             initialLoad = false;
           }
         }
 
-        // Attach the scroll event listener
         window.addEventListener('scroll', handleScroll);
 
-        // Trigger initial check in case some elements are in the viewport on load
         handleScroll();
     </script>
     @RenderSection("Scripts", required: false)
