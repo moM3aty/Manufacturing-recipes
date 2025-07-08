@@ -532,3 +532,39 @@ footer {
         font-size: 0.8rem !important;
     }
 }
+.category-badge {
+    background-color: var(--accent-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.service-icon {
+    background-color: rgba(255, 193, 180, 0.2);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    transition: transform 0.5s ease, background-color 0.3s ease;
+}
+
+    .service-icon:hover {
+        transform: rotate(360deg);
+        background-color: rgba(255, 193, 180, 0.4);
+    }

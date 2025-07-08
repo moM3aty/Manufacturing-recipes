@@ -1,63 +1,58 @@
 ﻿@model Kitchen.Models.Offer
+
 @{
+    ViewData["Title"] = "إضافة عرض جديد";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-<style>
-   
-    .form-group {
-        margin-bottom: 1.5rem;
-        width:70%;
-        margin: 0 auto;
-    }
 
-    .form-control {
-        direction: rtl; 
-        font-size: 1rem;
-        padding: 10px;
-    }
+<div class="form-container">
+    <h2><i class="fas fa-plus-circle"></i> @ViewData["Title"]</h2>
 
-    .btn-block {
-        width: 200px;
-        padding: 12px;
-        margin: 20px auto;
-        background-color: lightpink;
-        border: none;
-        justify-content: center;
-        display: flex;
-    }
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
 
-    .col-form-label {
-        font-weight: bold;
-    }
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitleAr" class="form-label">العنوان (عربي)</label>
+                    <input asp-for="TitleAr" class="form-control" required />
+                    <span asp-validation-for="TitleAr" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitleEn" class="form-label">العنوان (إنجليزي)</label>
+                    <input asp-for="TitleEn" class="form-control" required />
+                    <span asp-validation-for="TitleEn" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
 
-    </style>
+        <div class="form-group">
+            <label asp-for="DescriptionAr" class="form-label">الوصف (عربي)</label>
+            <textarea asp-for="DescriptionAr" class="form-control" rows="4" required></textarea>
+            <span asp-validation-for="DescriptionAr" class="text-danger"></span>
+        </div>
 
-@using (Html.BeginForm("Create", "Offers", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.TitleAr, "العنوان (عربي)", new { @class = "col-form-label" })
-        @Html.TextBoxFor(m => m.TitleAr, new { @class = "form-control", placeholder = "أدخل العنوان بالعربية" })
-    </div>
+        <div class="form-group">
+            <label asp-for="DescriptionEn" class="form-label">الوصف (إنجليزي)</label>
+            <textarea asp-for="DescriptionEn" class="form-control" rows="4" required></textarea>
+            <span asp-validation-for="DescriptionEn" class="text-danger"></span>
+        </div>
 
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.TitleEn, "العنوان (إنجليزي)", new { @class = "col-form-label" })
-        @Html.TextBoxFor(m => m.TitleEn, new { @class = "form-control", placeholder = "Enter the title in English" })
-    </div>
+        <div class="form-group">
+            <label for="ImageFile" class="form-label">صورة العرض</label>
+            <input type="file" name="ImageFile" id="ImageFile" class="form-control" accept="image/*" required />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
 
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.DescriptionAr, "الوصف (عربي)", new { @class = "col-form-label" })
-        @Html.TextAreaFor(m => m.DescriptionAr, new { @class = "form-control", placeholder = "أدخل الوصف بالعربية" })
-    </div>
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-times"></i> إلغاء</a>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ العرض</button>
+        </div>
+    </form>
+</div>
 
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.DescriptionEn, "الوصف (إنجليزي)", new { @class = "col-form-label" })
-        @Html.TextAreaFor(m => m.DescriptionEn, new { @class = "form-control", placeholder = "Enter the description in English" })
-    </div>
-
-    <div class="form-group text-right">
-        @Html.Label("صورة العرض", null, new { @class = "col-form-label" })
-        <input type="file" name="ImageFile" class="form-control" />
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block">حفظ</button>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

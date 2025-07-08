@@ -1,35 +1,99 @@
-﻿@model IEnumerable<PaymentMethod>
+﻿@model IEnumerable<Kitchen.Models.PaymentMethod>
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "إدارة طرق الدفع";
 }
 
-<h2 class="text-center">طرق الدفع</h2>
-<a asp-action="Create" class="btn btn-success mb-3">إضافة طريقة دفع جديدة</a>
+<style>
+    .table-container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
 
-<table class="table table-bordered text-right" dir="rtl">
-    <thead>
-        <tr>
-            <th>نوع الطريقة</th>
-            <th>رقم الحساب</th>
-            <th>IBAN</th>
-            <th>بريد إنستاباي</th>
-            <th>الإجراءات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var method in Model)
-        {
-            <tr>
-                <td>@method.TypeAr</td>
-                <td>@method.TypeEn</td>
-                <td>@method.AccountNumber</td>
-                <td>@method.IBAN</td>
-                <td>@method.InstapayEmail</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@method.Id" class="btn btn-primary btn-sm">تعديل</a>
-                    <a asp-action="Delete" asp-route-id="@method.Id" class="btn btn-danger btn-sm" onclick="return confirm('هل أنت متأكد من الحذف؟');">حذف</a>
-                </td>
-            </tr>
+    .table thead th {
+        background-color: var(--primary-dark, #034c53);
+        color: #fff;
+        border-bottom: none;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .actions-cell {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+        .page-header h1 {
+            color: var(--primary-dark, #034c53);
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
         }
-    </tbody>
-</table>
+</style>
+
+<div class="page-header">
+    <h1><i class="fas fa-credit-card"></i> @ViewData["Title"]</h1>
+    <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة طريقة جديدة</a>
+</div>
+
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+                    <th>نوع الطريقة (عربي)</th>
+                    <th>نوع الطريقة (انجليزي)</th>
+                    <th>رقم الحساب</th>
+                    <th>IBAN</th>
+                    <th>بريد إنستاباي</th>
+                    <th class="text-center">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var method in Model)
+                {
+                    <tr>
+                        <td>@method.TypeAr</td>
+                        <td>@method.TypeEn</td>
+                        <td>@method.AccountNumber</td>
+                        <td>@method.IBAN</td>
+                        <td>@method.InstapayEmail</td>
+                        <td class="actions-cell">
+                            <a asp-action="Edit" asp-route-id="@method.Id" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i> تعديل
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@method.Id" method="post" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i> حذف
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

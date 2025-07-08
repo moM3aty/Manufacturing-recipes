@@ -1,168 +1,125 @@
-﻿using Kitchen.Data;
-using Kitchen.Models;
-using Kitchen.ViewModel;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Kitchen.Controllers
+﻿namespace Kitchen.Controllers
 {
+    using Kitchen.Data;
+    using Kitchen.Models;
+    using Kitchen.ViewModel;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ViewFeatures;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging; // Added for logging
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class RecipeController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly ILogger<RecipeController> _logger; // Added for logging
 
-        public RecipeController(ApplicationDbContext context, IWebHostEnvironment env)
+        public RecipeController(ApplicationDbContext context, IWebHostEnvironment env, ILogger<RecipeController> logger) // Added logger
         {
             _context = context;
             _env = env;
+            _logger = logger; // Added logger
+        }
+
+        private void SetLanguageAndDirection()
+        {
+            var language = Request.Cookies["Language"] ?? "ar";
+            var direction = language == "ar" ? "rtl" : "ltr";
+            ViewData["Language"] = language;
+            ViewData["Direction"] = direction;
         }
 
         public IActionResult ToggleLanguage(string returnUrl)
         {
-            // Get the current language from the cookies (default is Arabic)
             var currentLanguage = Request.Cookies["Language"] ?? "ar";
             var newLanguage = currentLanguage == "ar" ? "en" : "ar";
 
-            // Set the new language cookie
             Response.Cookies.Append("Language", newLanguage, new CookieOptions
             {
                 Expires = DateTimeOffset.Now.AddYears(1),
-                IsEssential = true
+                IsEssential = true,
+                Path = "/"
             });
 
-            // Redirect to the previous page
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
         }
 
-        public IActionResult Agriculture()
+        public async Task<IActionResult> Agriculture()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "Agriculture";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Agricultural").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Agricultural").ToListAsync();
             return View(recipes);
         }
 
-        public IActionResult Chemical()
+        public async Task<IActionResult> Chemical()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "Chemical";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Chemical").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Chemical").ToListAsync();
             return View(recipes);
         }
-        public IActionResult clinic()
+        public async Task<IActionResult> clinic()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "clinic";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Pharmacy").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Pharmacy").ToListAsync();
             return View(recipes);
         }
-        public IActionResult makeup()
+        public async Task<IActionResult> makeup()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "makeup";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "cosmetics").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "cosmetics").ToListAsync();
             return View(recipes);
         }
-        public IActionResult food()
+        public async Task<IActionResult> food()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "food";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Nutritional").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Nutritional").ToListAsync();
             return View(recipes);
         }
-        public IActionResult FeasibilityStudies()
+        public async Task<IActionResult> FeasibilityStudies()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "FeasibilityStudies";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Feasibility Studies").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Feasibility Studies").ToListAsync();
             return View(recipes);
         }
-        public IActionResult industrialModels()
+        public async Task<IActionResult> industrialModels()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "industrialModels";
-
-            var recipes = _context.Recipes.Where(x => x.RecipeType == "Industrial Models").ToList();
+            var recipes = await _context.Recipes.Where(x => x.RecipeType == "Industrial Models").ToListAsync();
             return View(recipes);
         }
-        public IActionResult Contact()
+
+        public async Task<IActionResult> Index()
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
-            ViewData["Controller"] = "Recipe";
-            ViewData["Action"] = "Contact";
-            var contacts = _context.contactInfos?.ToList() ?? new List<ContactInfo>();
-            var payments = _context.paymentMethods?.ToList() ?? new List<PaymentMethod>();
-
-            var model = new ContactViewModel
-            {
-                contacts = contacts,
-                paymentMethods = payments
-            };
-            return View(model);
-        }
-
-        public IActionResult Index()
-        {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "Index";
-            
-            var contents = _context.SectionContents.ToList();
 
-            // Localize the content
+            var contents = await _context.SectionContents.ToListAsync();
+            var language = ViewData["Language"]?.ToString();
+
+            string GetLocalizedText(List<SectionContent> allContents, string key)
+            {
+                var content = allContents.FirstOrDefault(c => c.Key == key);
+                return language == "ar" ? content?.TextAr : content?.TextEn;
+            }
+
             ViewData["HeroTitle"] = GetLocalizedText(contents, "Hero_Title");
             ViewData["HeroDesc"] = GetLocalizedText(contents, "Hero_Desc");
             ViewData["HeroButton"] = GetLocalizedText(contents, "Hero_Button");
@@ -172,98 +129,88 @@ namespace Kitchen.Controllers
 
             var model = new AdminDashboardViewModel
             {
-                Recipes = _context.Recipes.Where(x => x.RecipeType == "Nutritional").ToList(),
-
-                Offers = _context.Offers.ToList()
+                Recipes = await _context.Recipes.Where(x => x.RecipeType == "Nutritional").ToListAsync(),
+                Offers = await _context.Offers.ToListAsync()
             };
 
             return View(model);
-
         }
 
-
-        public class LanguageMiddleware
+        public async Task<IActionResult> Contact()
         {
-            private readonly RequestDelegate _next;
-
-            public LanguageMiddleware(RequestDelegate next)
+            SetLanguageAndDirection();
+            ViewData["Controller"] = "Recipe";
+            ViewData["Action"] = "Contact";
+            var model = new ContactViewModel
             {
-                _next = next;
-            }
-
-            public async Task InvokeAsync(HttpContext context)
-            {
-                var language = context.Request.Cookies["Language"] ?? "ar";
-                var direction = language == "ar" ? "rtl" : "ltr";
-
-                if (context.Items["ViewData"] is ViewDataDictionary viewData)
-                {
-                    viewData["Language"] = language;
-                    viewData["Direction"] = direction;
-                    viewData["Controller"] = "Recipe";
-                    viewData["Action"] = "";
-                }
-
-                await _next(context);
-            }
+                contacts = await _context.contactInfos.ToListAsync(),
+                paymentMethods = await _context.paymentMethods.ToListAsync()
+            };
+            return View(model);
         }
 
-        // Show code input form
         public IActionResult EnterCode(int id)
         {
-            var language = Request.Cookies["Language"] ?? "ar";
-            var direction = language == "ar" ? "rtl" : "ltr";
-
-            ViewData["Direction"] = direction;
-            ViewData["Language"] = language;
+            SetLanguageAndDirection();
             ViewData["Controller"] = "Recipe";
             ViewData["Action"] = "";
-
             return View(id);
         }
 
-            // Handle code verification and file download
-            [HttpPost]
-        public IActionResult VerifyCode(int id, string code)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VerifyCode(int id, string code)
         {
-            var matchedCode = _context.RecipeCodes
-                .Include(rc => rc.Recipe)
-                .FirstOrDefault(rc => rc.RecipeId == id && rc.Code == code && !rc.IsUsed);
+            SetLanguageAndDirection();
+            var language = ViewData["Language"]?.ToString() ?? "ar";
 
-            if (matchedCode != null)
+            if (string.IsNullOrWhiteSpace(code))
             {
-                matchedCode.IsUsed = true;
-                _context.SaveChanges();
-
-                var filePath = Path.Combine(_env.WebRootPath, matchedCode.Recipe.FilePath);
-
-                if (!System.IO.File.Exists(filePath))
-                {
-                    ModelState.AddModelError("", "عذراً، لم يتم العثور على الملف.");
-                    return View("EnterCode", id);
-                }
-
-                var mime = "application/zip";
-                var fileName = Path.GetFileName(filePath);
-                return PhysicalFile(filePath, mime, fileName);
+                TempData["ErrorMessage"] = language == "ar" ? "الرجاء إدخال الكود." : "Please enter the code.";
+                return RedirectToAction("EnterCode", new { id = id });
             }
 
-            ModelState.AddModelError("", "الكود غير صحيح أو تم استخدامه بالفعل.");
-            return View("EnterCode", id);
+            var trimmedCode = code.Trim();
+            var matchedCode = await _context.RecipeCodes
+                .Include(rc => rc.Recipe)
+                .FirstOrDefaultAsync(rc => rc.RecipeId == id && rc.Code.ToUpper() == trimmedCode.ToUpper());
+
+            if (matchedCode == null)
+            {
+                TempData["ErrorMessage"] = language == "ar" ? "الكود الذي أدخلته غير صحيح." : "The code you entered is incorrect.";
+                return RedirectToAction("EnterCode", new { id = id });
+            }
+
+            if (matchedCode.IsUsed)
+            {
+                TempData["ErrorMessage"] = language == "ar" ? "هذا الكود تم استخدامه من قبل." : "This code has already been used.";
+                return RedirectToAction("EnterCode", new { id = id });
+            }
+
+            if (matchedCode.Recipe == null || string.IsNullOrWhiteSpace(matchedCode.Recipe.FilePath))
+            {
+                TempData["ErrorMessage"] = language == "ar" ? "خطأ: ملف الوصفة غير موجود. يرجى مراجعة الإدارة." : "Error: Recipe file not found. Please contact administration.";
+                return RedirectToAction("EnterCode", new { id = id });
+            }
+
+            var filePath = Path.Combine(_env.WebRootPath, matchedCode.Recipe.FilePath.Replace('/', Path.DirectorySeparatorChar));
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                TempData["ErrorMessage"] = language == "ar" ? "عذراً، لم يتم العثور على الملف المطلوب. يرجى مراجعة الإدارة." : "Sorry, the requested file was not found. Please contact administration.";
+                return RedirectToAction("EnterCode", new { id = id });
+            }
+
+            matchedCode.IsUsed = true;
+            _context.RecipeCodes.Update(matchedCode);
+            await _context.SaveChangesAsync();
+
+            var mime = "application/zip";
+            var fileName = Path.GetFileName(filePath);
+            return PhysicalFile(filePath, mime, fileName);
         }
 
-        private string GetLocalizedText(List<SectionContent> contents, string key)
-        {
-            var content = contents.FirstOrDefault(c => c.Key == key);
-            var direction = GetDirection();
-
-            return direction == "rtl" ? content?.TextAr : content?.TextEn;
-        }
-
-        private string GetDirection()
-        {
-            var language = Request.Cookies["Language"] ?? "ar";
-            return language == "ar" ? "rtl" : "ltr";
-        }
     }
+   
+
 }

@@ -3,17 +3,15 @@
     using Kitchen.Data;
     using Kitchen.Models;
     using Kitchen.ViewModel;
-    using Microsoft.AspNetCore.Components.Sections;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
-   
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         private readonly IWebHostEnvironment _env;
+
 
         public AdminController(ApplicationDbContext context, IWebHostEnvironment env)
         {
@@ -29,45 +27,57 @@
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
-           
-
+            if (HttpContext.Session.GetInt32("AdminId") != null)
+            {
+                return RedirectToAction(nameof(Dashboard));
+            }
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(string email, string password)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string email, string password)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                ModelState.AddModelError("", "Email and password are required.");
+                ModelState.AddModelError("", "البريد الإلكتروني وكلمة المرور مطلوبان.");
                 return View();
             }
 
-            var admin = _context.Admins.FirstOrDefault(a => a.Email == email && a.PasswordHash == password);
+            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Email == email && a.PasswordHash == password);
 
             if (admin != null)
             {
                 HttpContext.Session.SetInt32("AdminId", admin.Id);
-                return RedirectToAction("Dashboard");
+                return RedirectToAction(nameof(Dashboard));
             }
 
-            ModelState.AddModelError("", "Invalid credentials");
+            ModelState.AddModelError("", "بيانات الاعتماد غير صالحة.");
             return View();
         }
 
-        public IActionResult Dashboard()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
         {
-            var adminId = HttpContext.Session.GetInt32("AdminId");
-            if (adminId == null)
-                return RedirectToAction("Login");
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Login));
+        }
 
+
+        public async Task<IActionResult> Dashboard()
+        {
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
 
             var model = new AdminDashboardViewModel
             {
-                Recipes = _context.Recipes.ToList(),
-                SectionContents = _context.SectionContents.ToList()
+                Recipes = await _context.Recipes.ToListAsync(),
+                SectionContents = await _context.SectionContents.ToListAsync(),
+                Offers = await _context.Offers.ToListAsync()
             };
 
             return View(model);
@@ -75,10 +85,10 @@
 
         public IActionResult AddRecipe()
         {
-            var adminId = HttpContext.Session.GetInt32("AdminId");
-            if (adminId == null)
-                return RedirectToAction("Login");
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
 
+            ViewBag.RecipeTypes = GetRecipeTypes();
             return View();
         }
 
@@ -112,7 +122,6 @@
                 return View();
             }
 
-            // Save files
             var zipFolder = Path.Combine(_env.WebRootPath, "uploads", "zips");
             var imageFolder = Path.Combine(_env.WebRootPath, "uploads", "images");
             Directory.CreateDirectory(zipFolder);
@@ -153,150 +162,97 @@
             return RedirectToAction("Dashboard");
         }
 
-       
-        private bool IsImage(IFormFile file)
-        {
-            var extensions = new[] { ".jpg", ".jpeg", ".png" };
-            var ext = Path.GetExtension(file.FileName).ToLower();
-            return extensions.Contains(ext);
-        }
 
-        public IActionResult EditRecipe(int id)
+    
+
+        public async Task<IActionResult> EditRecipe(int id)
         {
-            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == id);
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
+            var recipe = await _context.Recipes.FindAsync(id);
             if (recipe == null)
                 return NotFound();
-            ViewBag.RecipeTypes = new List<SelectListItem>
-{
-        new SelectListItem { Text = "زراعي", Value = "Agricultural" },
-        new SelectListItem { Text = "كيميائي", Value = "Chemical" },
-        new SelectListItem { Text = "غذائي", Value = "Nutritional" },
-        new SelectListItem { Text = "صيدلي", Value = "Pharmacy" },
-        new SelectListItem { Text = "مستحضرات تجميل", Value = "cosmetics" },
-        new SelectListItem { Text = "دراسات جدوى", Value = "Feasibility Studies" },
-        new SelectListItem { Text = " نماذج صناعية", Value = "Industrial Models" }
 
-
-};
-
+            ViewBag.RecipeTypes = GetRecipeTypes(recipe.RecipeType);
             return View(recipe);
         }
 
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditRecipe(int id, Recipe updatedRecipe, IFormFile? ImageFile, IFormFile? ZipFile)
+        public async Task<IActionResult> EditRecipe(int id, Recipe updatedRecipe, IFormFile? imageFile, IFormFile? zipFile)
         {
-            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == id);
+            if (id != updatedRecipe.Id) return BadRequest();
+
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
+            var recipe = await _context.Recipes.AsNoTracking().FirstOrDefaultAsync(r => r.Id == id);
             if (recipe == null)
                 return NotFound();
 
-            recipe.TitleAr = updatedRecipe.TitleAr;
-            recipe.TitleEn = updatedRecipe.TitleEn;
-            recipe.DescriptionAr = updatedRecipe.DescriptionAr;
-            recipe.DescriptionEn = updatedRecipe.DescriptionEn;
-            recipe.Price = updatedRecipe.Price;
-            recipe.SloganAr = updatedRecipe.SloganAr;
-            recipe.SloganEn = updatedRecipe.SloganEn;
-            recipe.RecipeType = updatedRecipe.RecipeType; // NEW
-
-            if (ImageFile != null && ImageFile.Length > 0)
+            if (ModelState.IsValid)
             {
-                if (!string.IsNullOrEmpty(recipe.ImagePath))
+                updatedRecipe.ImagePath = recipe.ImagePath;
+                updatedRecipe.FilePath = recipe.FilePath;
+
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    var oldImagePath = Path.Combine(_env.WebRootPath, recipe.ImagePath);
-                    if (System.IO.File.Exists(oldImagePath))
-                        System.IO.File.Delete(oldImagePath);
+                    DeleteFile(recipe.ImagePath);
+                    updatedRecipe.ImagePath = await SaveFileAsync(imageFile, "images");
                 }
 
-                var imageFolder = Path.Combine(_env.WebRootPath, "uploads", "images");
-                Directory.CreateDirectory(imageFolder);
-
-                var imageFileName = $"{Guid.NewGuid()}{Path.GetExtension(ImageFile.FileName)}";
-                var imageFullPath = Path.Combine(imageFolder, imageFileName);
-
-                using (var stream = new FileStream(imageFullPath, FileMode.Create))
+                if (zipFile != null && zipFile.Length > 0)
                 {
-                    await ImageFile.CopyToAsync(stream);
+                    DeleteFile(recipe.FilePath);
+                    updatedRecipe.FilePath = await SaveFileAsync(zipFile, "zips");
                 }
 
-                recipe.ImagePath = $"uploads/images/{imageFileName}";
+                _context.Update(updatedRecipe);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Dashboard));
             }
 
-            if (ZipFile != null && ZipFile.Length > 0)
-            {
-                if (!string.IsNullOrEmpty(recipe.FilePath))
-                {
-                    var oldZipPath = Path.Combine(_env.WebRootPath, recipe.FilePath);
-                    if (System.IO.File.Exists(oldZipPath))
-                        System.IO.File.Delete(oldZipPath);
-                }
-
-                var zipFolder = Path.Combine(_env.WebRootPath, "uploads", "zips");
-                Directory.CreateDirectory(zipFolder);
-
-                var zipFileName = $"{Guid.NewGuid()}{Path.GetExtension(ZipFile.FileName)}";
-                var zipFullPath = Path.Combine(zipFolder, zipFileName);
-
-                using (var stream = new FileStream(zipFullPath, FileMode.Create))
-                {
-                    await ZipFile.CopyToAsync(stream);
-                }
-
-                recipe.FilePath = $"uploads/zips/{zipFileName}";
-            }
-
-            _context.Update(recipe);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Dashboard");
+            ViewBag.RecipeTypes = GetRecipeTypes(updatedRecipe.RecipeType);
+            return View(updatedRecipe);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
             var recipe = await _context.Recipes.FindAsync(id);
             if (recipe == null)
                 return NotFound();
 
-            // حذف الصورة
-            if (!string.IsNullOrEmpty(recipe.ImagePath))
-            {
-                var imagePath = Path.Combine(_env.WebRootPath, recipe.ImagePath);
-                if (System.IO.File.Exists(imagePath))
-                    System.IO.File.Delete(imagePath);
-            }
-
-            // حذف الملف المضغوط
-            if (!string.IsNullOrEmpty(recipe.FilePath))
-            {
-                var zipPath = Path.Combine(_env.WebRootPath, recipe.FilePath);
-                if (System.IO.File.Exists(zipPath))
-                    System.IO.File.Delete(zipPath);
-            }
+            DeleteFile(recipe.ImagePath);
+            DeleteFile(recipe.FilePath);
 
             _context.Recipes.Remove(recipe);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Dashboard");
+            return RedirectToAction(nameof(Dashboard));
         }
 
         [HttpGet]
-        public IActionResult AddCode(int id)
+        public async Task<IActionResult> AddCode(int id)
         {
-            var recipe = _context.Recipes.FirstOrDefault(r => r.Id == id);
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
+            var recipe = await _context.Recipes.FindAsync(id);
             if (recipe == null)
                 return NotFound();
 
             return View(recipe);
         }
 
-      
         [HttpPost]
         public IActionResult AddCode(string code, int recipeId)
         {
-            // تحقق أن الوصفة موجودة
             var recipeExists = _context.Recipes.Any(r => r.Id == recipeId);
             if (!recipeExists)
                 return NotFound("الوصفة غير موجودة");
@@ -312,29 +268,93 @@
 
             return RedirectToAction("Dashboard");
         }
-
-        public IActionResult EditSection(int id)
+        public async Task<IActionResult> EditSection(int id)
         {
-            var sectionContent = _context.SectionContents.Find(id);
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
+            var sectionContent = await _context.SectionContents.FindAsync(id);
+            if (sectionContent == null) return NotFound();
+
             return View(sectionContent);
         }
 
-
-
         [HttpPost]
-        public IActionResult EditSection(Models.SectionContent model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditSection(SectionContent model)
         {
+            if (HttpContext.Session.GetInt32("AdminId") == null)
+                return RedirectToAction(nameof(Login));
+
             if (ModelState.IsValid)
             {
                 _context.SectionContents.Update(model);
-                _context.SaveChanges();
-                return RedirectToAction("Dashboard");
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Dashboard));
             }
 
             return View(model);
         }
+
+        private bool IsImage(IFormFile file)
+        {
+            var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            return extensions.Contains(ext);
+        }
+
+        private async Task<string> SaveFileAsync(IFormFile file, string subfolder)
+        {
+            if (file == null || file.Length == 0) return null;
+
+            var folderPath = Path.Combine(_env.WebRootPath, "uploads", subfolder);
+            Directory.CreateDirectory(folderPath);
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+            var fullPath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return $"uploads/{subfolder}/{fileName}";
+        }
+
+        private void DeleteFile(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath)) return;
+
+            var fullPath = Path.Combine(_env.WebRootPath, filePath.Replace('/', Path.DirectorySeparatorChar));
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+        }
+
+        private List<SelectListItem> GetRecipeTypes(string selectedValue = "")
+        {
+            var types = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "زراعي", Value = "Agricultural" },
+                new SelectListItem { Text = "كيميائي", Value = "Chemical" },
+                new SelectListItem { Text = "غذائي", Value = "Nutritional" },
+                new SelectListItem { Text = "صيدلي", Value = "Pharmacy" },
+                new SelectListItem { Text = "مستحضرات تجميل", Value = "cosmetics" },
+                new SelectListItem { Text = "دراسات جدوى", Value = "Feasibility Studies" },
+                new SelectListItem { Text = "نماذج صناعية", Value = "Industrial Models" }
+            };
+
+            if (!string.IsNullOrEmpty(selectedValue))
+            {
+                var selectedItem = types.FirstOrDefault(t => t.Value == selectedValue);
+                if (selectedItem != null)
+                {
+                    selectedItem.Selected = true;
+                }
+            }
+
+            return types;
+        }
     }
-
-
 }
-   

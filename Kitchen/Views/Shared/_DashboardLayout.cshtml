@@ -1,103 +1,62 @@
 ﻿@{
-    Layout = null;
-    var username = User?.Identity?.IsAuthenticated == true ? User.Identity.Name : "المستخدم";
+    var username = User?.Identity?.IsAuthenticated == true ? User.Identity.Name : "Admin";
 }
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>لوحة التحكم</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="~/assets/logo.png" rel="icon" />
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - لوحة التحكم</title>
 
-        .navbar {
-            background-color: #fff;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" />
 
-        .navbar-text {
-            color: #6c757d;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="~/assets/logo.png" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="~/css/dashboard-styles.css" />
 
-        .navbar .nav-link {
-            color: #333;
-            font-weight: 500;
-            margin-right: 15px;
-            transition: color 0.3s ease;
-        }
-
-            .navbar .nav-link:hover {
-                color: #ff80b3;
-            }
-
- h4 {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-
-            a {
-            display: block;
-            color: #a3a1a1;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s, color 0.3s;
-            text-align: center;
-            margin: auto;   
-            }
-
-               a:hover,
-               a.active {                 
-                    color: #000;
-                }
-
-        .content-area {
-            padding: 30px;
-        }
-
-        footer {
-            background-color: #ff80b3;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-    
-    </style>
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="@Url.Action("Dashboard", "Admin")" class="sidebar-logo">
+                    <img src="~/assets/logo.png" alt="Alternate Text"  width="150" style="background:#fff;border-radius:50%;"/>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <a asp-controller="Admin" asp-action="Dashboard" class="nav-link"><i class="fas fa-tachometer-alt fa-fw"></i><span>لوحة التحكم</span></a>
+                <a asp-controller="Admin" asp-action="AddRecipe" class="nav-link"><i class="fas fa-plus-circle fa-fw"></i><span>إضافة وصفة</span></a>
+                <a asp-controller="Offers" asp-action="Index" class="nav-link"><i class="fas fa-tags fa-fw"></i><span>العروض</span></a>
+                <a asp-controller="ContactInfo" asp-action="Index" class="nav-link"><i class="fas fa-address-book fa-fw"></i><span>وسائل الاتصال</span></a>
+                <a asp-controller="PaymentMethod" asp-action="Index" class="nav-link"><i class="fas fa-credit-card fa-fw"></i><span>طرق الدفع</span></a>
+                <hr class="sidebar-divider" />
+                <a asp-controller="Recipe" asp-action="Index" class="nav-link"><i class="fas fa-globe fa-fw"></i><span>عرض الموقع الرئيسي</span></a>
+            </nav>
+        </aside>
 
-  
-    <div class="content-area">
-        <nav class="container-fluid navbar navbar-expand navbar-light shadow-sm rounded mb-4 px-3">
-               
-                        <a href="@Url.Action("Index", "Recipe")" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Recipe" ? "active" : "")">
-                            <i class="fas fa-home"></i> الصفحة الرئيسية
-                        </a>
-            <a href="@Url.Action("Dashboard", "Admin")" class="@(ViewContext.RouteData.Values["controller"]?.ToString() == "Recipe" ? "active" : "")">
-                <i class="fas fa-key"></i> لوحة التحكم
-            </a>
-        </nav>
+        <div class="main-wrapper">
+            <header class="top-navbar">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>مرحباً, @username</span>
+                </div>
+            </header>
 
-        @RenderBody()
+            <main class="content-area">
+                @RenderBody()
+            </main>
+
+            <footer class="main-footer">
+                GMTWEB &copy; @DateTime.Now.Year - جميع الحقوق محفوظة
+            </footer>
+        </div>
     </div>
 
-    <footer>
-        GMTWEB  &copy; @DateTime.Now.Year - جميع الحقوق محفوظة
-    </footer>
-
-    @RenderSection("Scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

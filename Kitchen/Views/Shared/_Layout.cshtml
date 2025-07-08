@@ -1,11 +1,17 @@
-﻿<!DOCTYPE html>
-<html lang="@(ViewData["Language"]?.ToString() ?? "ar")" dir="@(ViewData["Direction"]?.ToString() ?? "rtl")">
+﻿
+@{
+    var language = ViewData["Language"]?.ToString() ?? "ar";
+    var direction = ViewData["Direction"]?.ToString() ?? "rtl";
+    var currentAction = ViewData["Action"]?.ToString() ?? "";
+}
+<!DOCTYPE html>
+<html lang="@language" dir="@direction">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>وصفات التصنيع الزراعي</title>
 
-    @if ((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl")
+    @if (direction == "rtl")
     {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" />
     }
@@ -15,129 +21,59 @@
     }
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Kitchen.styles.css" asp-append-version="true" />
     <link href="~/assets/logo.png" rel="icon" type="image/x-icon" />
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
         }
+
+        .nav-link.active {
+            color: var(--accent) !important;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body >
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-        <div class="container text-center" style="width: 35%;margin:0 50px;padding: 0 50px">
-            <div class="logo-container">
-                <div class="logo-text d-flex align-items-center" style="gap: 10px;">
-                    <img src="@Url.Content("~/assets/logo.png")"
-                         alt="Logo"
-                         class="logo-img @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "ms-2" : "me-2") rounded-circle"
-                         data-aos="fade-right"
-                         data-aos-duration="800" />
-                    <div class="text-start">
-                        <h1 class="logo-main m-0"
-                            data-aos="fade-up"
-                            data-aos-duration="1000">
-                            <span data-i18n="logo-main">PGDA</span>
-                        </h1>
-                        <p class="logo-subtitle m-0"
-                           data-aos="fade-up"
-                           data-aos-duration="1200">
-                            <span data-i18n="logo-subtitle">@((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "للتنمية العلمية" : "For Scientific Development")</span>
-                        </p>
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Recipe" asp-action="Index">
+                <div class="logo-container d-flex align-items-center">
+                    <img src="@Url.Content("~/assets/logo.png")" alt="Logo" class="logo-img rounded-circle me-2" />
+                    <div>
+                        <h1 class="logo-main m-0">PGDA</h1>
+                        <p class="logo-subtitle m-0">@(direction == "rtl" ? "للتنمية العلمية" : "For Scientific Development")</p>
                     </div>
                 </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link @(currentAction == "Index" ? "active" : "")" asp-controller="Recipe" asp-action="Index">@(language == "ar" ? "الرئيسية" : "Home")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "Agriculture" ? "active" : "")" asp-controller="Recipe" asp-action="Agriculture">@(language == "ar" ? "الزراعية" : "Agriculture")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "Chemical" ? "active" : "")" asp-controller="Recipe" asp-action="Chemical">@(language == "ar" ? "الكيميائية" : "Chemical")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "clinic" ? "active" : "")" asp-controller="Recipe" asp-action="clinic">@(language == "ar" ? "الصيدلية" : "Pharmacy")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "makeup" ? "active" : "")" asp-controller="Recipe" asp-action="makeup">@(language == "ar" ? "مستحضرات تجميل" : "Cosmetics")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "food" ? "active" : "")" asp-controller="Recipe" asp-action="food">@(language == "ar" ? "الغذاء" : "Food")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "FeasibilityStudies" ? "active" : "")" asp-controller="Recipe" asp-action="FeasibilityStudies">@(language == "ar" ? "دراسات جدوى" : "Feasibility Studies")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "industrialModels" ? "active" : "")" asp-controller="Recipe" asp-action="industrialModels">@(language == "ar" ? "نماذج صناعية" : "Industrial Models")</a></li>
+                    <li class="nav-item"><a class="nav-link @(currentAction == "Contact" ? "active" : "")" asp-controller="Recipe" asp-action="Contact">@(language == "ar" ? "اتصل بنا" : "Contact Us")</a></li>
+                </ul>
+                <a class="btn btn-outline-primary ms-lg-3" asp-controller="Recipe" asp-action="ToggleLanguage" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
+                    @(language == "ar" ? "EN" : "AR")
+                </a>
             </div>
         </div>
+    </nav>
 
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "ms-auto" : "me-auto")" style="margin:auto">
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "Index") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="Index" data-i18n="nav-home">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الرئيسية" : "Home")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "Agriculture") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="Agriculture" data-i18n="nav-agriculture">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الزراعية" : "Agriculture")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="300">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "Chemical") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="Chemical" data-i18n="nav-chemical">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الكيميائية" : "Chemical")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "clinic") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="clinic" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الصيدليه" : "Pharmacy")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "makeup") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="makeup" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "مستحضرات تجميل" : "cosmetics")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "food") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="food" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "الغذاء" : "Food")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "FeasibilityStudies") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="FeasibilityStudies" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "دراسات جدوى" : "Feasibility studies")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "industrialModels") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="industrialModels" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? " نماذج صناعية" : "Industrial Models")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
-                    <a class="nav-link @((ViewData["Controller"].ToString() == "Recipe" && ViewData["Action"].ToString() == "Contact") ? "fw-bold" : "")"
-                       asp-controller="Recipe" asp-action="contact" data-i18n="nav-contact">
-                        @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "اتصل بنا" : "Contact Us")
-                    </a>
-                </li>
-                <li class="nav-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
-                    <a id="langSwitch" class="btn btn-outline-primary @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "ms-3" : "me-3")"
-                       asp-controller="Recipe" asp-action="ToggleLanguage"
-                       asp-route-returnUrl="@Context.Request.Path">
-                        <span data-i18n="lang-switch">@((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "EN" : "AR")</span>
-                    </a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
-
-<div>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
-</div>
+
     <footer class="py-5">
         <div class="container py-4">
             <div class="row">
@@ -155,8 +91,8 @@
                     <p class="text-white-50">
                         <span data-i18n="footer-description">
                             @((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ?
-                                "وصفات وتركيبات مميزة للتصنيع الزراعي، الصيدلاني، الكيميائي، والغذائي." :
-                                "Unique formulas and recipes for agricultural, pharmaceutical, chemical, and food industries.")
+                                                        "وصفات وتركيبات مميزة للتصنيع الزراعي، الصيدلاني، الكيميائي، والغذائي." :
+                                                        "Unique formulas and recipes for agricultural, pharmaceutical, chemical, and food industries.")
                         </span>
                     </p>
                 </div>
@@ -250,7 +186,7 @@
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
                             </svg>
                         </a>
-                    </div>  
+                    </div>
                 </div>
             </div>
 
@@ -261,33 +197,16 @@
                         <a href="https://www.facebook.com/profile.php?id=100090592885243" style="text-decoration:none;cursor:pointer;" target="_blank" class="text-white" data-i18n="footer-designed-by">@((ViewData["Direction"]?.ToString() ?? "rtl") == "rtl" ? "تم التصميم و برمجه من خلال شركه GWTWeb" : "Designed and developed by GWTWeb")</a>
                     </p>
                 </div>
-               
+
             </div>
         </div>
     </footer>
 
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        let initialLoad = true;
-
-        function handleScroll() {
-          if (initialLoad) {
-            AOS.init({
-              once: true 
-            });
-            initialLoad = false;
-          }
-        }
-
-        window.addEventListener('scroll', handleScroll);
-
-        handleScroll();
+        AOS.init({ once: true, duration: 800 });
     </script>
-    @RenderSection("Scripts", required: false)
-    <script src="script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

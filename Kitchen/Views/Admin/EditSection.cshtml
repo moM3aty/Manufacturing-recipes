@@ -2,85 +2,30 @@
 
 @{
     ViewData["Title"] = "تعديل محتوى القسم";
-}
-@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-<style>
-    h2 {
-        text-align: center;
-        padding: 15px;
-        border-radius: 25px;
-        background: linear-gradient(to right, #034c53, #007074);
-        width: fit-content;
-        margin: 15px auto;
-        color: #fff;
-    }
 
-    form {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f2f2f2;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
+<div class="form-container">
+    <h2><i class="fas fa-file-alt"></i> @ViewData["Title"]</h2>
+    <form asp-action="EditSection" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Key" />
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+        <div class="form-group">
+            <label asp-for="TextAr" class="form-label">النص العربي</label>
+            <textarea asp-for="TextAr" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="TextAr" class="text-danger"></span>
+        </div>
 
-    label {
-        font-weight: bold;
-        margin-bottom: 5px;
-        display: block;
-    }
+        <div class="form-group">
+            <label asp-for="TextEn" class="form-label">النص الإنجليزي</label>
+            <textarea asp-for="TextEn" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="TextEn" class="text-danger"></span>
+        </div>
 
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-
-    .btn-primary {
-        background-color: #007074;
-        border: none;
-        color: white;
-        padding: 12px 20px;
-        font-size: 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-        display: block;
-        margin: 0 auto;
-    }
-
-        .btn-primary:hover {
-            background-color: #005f62;
-        }
-</style>
-
-<h2>تعديل محتوى القسم</h2>
-
-<form asp-action="EditSection" method="post">
-    <input type="hidden" asp-for="Id" />
-
-   <div class="form-group" style="display:none">
-       <label>المفتاح</label>
-       <input asp-for="Key" class="form-control" readonly /> 
-   </div> 
-
-    <div class="form-group">
-        <label>النص العربي</label>
-        <textarea asp-for="TextAr" class="form-control" rows="4"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>النص الإنجليزي</label>
-        <textarea asp-for="TextEn" class="form-control" rows="4"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">حفظ</button>
-</form>
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a asp-action="Dashboard" class="btn btn-secondary"><i class="fas fa-times"></i> إلغاء</a>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ التعديلات</button>
+        </div>
+    </form>
+</div>

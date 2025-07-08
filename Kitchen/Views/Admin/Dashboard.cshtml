@@ -1,241 +1,106 @@
 ﻿@using Kitchen.ViewModel
+@using System.Globalization
 @model AdminDashboardViewModel
 
 @{
     ViewData["Title"] = "لوحة تحكم المدير";
-    var groupedRecipes = Model.Recipes
-       .GroupBy(r => r.RecipeType)
-       .ToList();
-    var typeTranslations = new Dictionary<string, string>
-    {
-        { "Agricultural", "زراعية" },
-        { "Chemical", "كيميائية" },
-        { "Nutritional", "غذائيه" },
-        {"Cosmetics","صيدلي"},
-        {"Pharmacy","مستحضرات تجميل"}
-    };
-    
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-
+    var groupedRecipes = Model.Recipes.GroupBy(r => r.RecipeType).ToList();
 }
 
-<style>
-    body {
-        font-family: 'Cairo', sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
-        margin: 0;
-        padding: 0;
-    }
 
-    h2 {
-        text-align: center;
-        padding: 20px 30px;
-        border-radius: 12px;
-        background: linear-gradient(to right, #034C53, #007074);
-        width: fit-content;
-        margin: 30px auto 20px;
-        color: #fff;
-        font-size: 1.8rem;
-        font-weight: 700;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-    }
 
-    .card {
-        max-width: 500px;
-        margin: 0 auto 40px;
-        background-color: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
-        }
-
-    .card-body {
-        padding: 30px 25px;
-    }
-
-    label {
-        font-weight: 600;
-        color: #034C53;
-        margin-bottom: 8px;
-        display: block;
-    }
-
-    input[type="text"] {
-        width: 100%;
-        padding: 12px 15px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        font-size: 1rem;
-        margin-bottom: 20px;
-        transition: border-color 0.3s ease;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-    }
-
-        input[type="text"]:focus {
-            border-color: #007074;
-            outline: none;
-        }
-
-    .btn {
-        display: inline-block;
-        padding: 14px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 600;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        text-align: center;
-        display: block;
-        width: fit-content;
-        margin: auto !important;
-    }
-
-    .btn-primary {
-        background-color: #007074;
-        color: #fff;
-        
-    }
-
-        .btn-primary:hover {
-            background-color: #f38c79;
-            transform: scale(1.02);
-        }
-
-    .btn-secondary {
-        background-color: transparent;
-        color: #034C53;
-        text-align: center;
-        display: block;
-        margin: 20px auto 0;
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-        .btn-secondary:hover {
-            text-decoration: underline;
-        }
-
-    .card-title {
-        font-size: 1.4rem;
-        font-weight: bold;
-        color: #034C53;
-        margin-bottom: 10px;
-    }
-
-    .card-text {
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    .card-footer {
-        padding: 20px;
-        text-align: center;
-        background-color: #f5f5f5;
-        border-top: 1px solid #eee;
-        display: flex;
-        justify-content: space-evenly;
+@section Styles {
+    <style>
        
-    }
+    </style>
+}
 
-        .card-footer .btn {
-            padding: 10px 20px;
-            font-size: 0.95rem;
-            margin: 0 !important;
-        }
 
-    .btn-warning{
-        background-color: #034c53;
-        color: #fff;
-    }
-
-   .btn-warning:hover {
-            background-color: #f38c79;
-            color:#fff;
-    }
-</style>
-<h2>لوحة تحكم المدير</h2>
-<div style="display:flex">
-
-<a href="/Admin/AddRecipe" class="btn btn-primary mb-3">
-    إضافة وصفة جديدة
-</a>
-<a href="/Offers/index" class="btn btn-primary mb-3">
-    العروض
-    </a>
-        <a href="/ContactInfo/index" class="btn btn-primary mb-3">
-            وسائل الاتصال
-        </a>
-    <a href="/PaymentMethod/index" class="btn btn-primary mb-3">
-        طرق الدفع
+<div class="page-header">
+    <h1><i class="fas fa-tachometer-alt"></i> @ViewData["Title"]</h1>
+    <a asp-action="AddRecipe" class="btn btn-primary">
+        <i class="fas fa-plus"></i> إضافة وصفة جديدة
     </a>
 </div>
-<div class="container">
-    @foreach (var group in groupedRecipes)
-    {
-        var typeName = typeTranslations.ContainsKey(group.Key) ? typeTranslations[group.Key] : group.Key;
 
-        <h2 class="mt-4 mb-3" style="font-size:20px">@typeName</h2> 
+@foreach (var group in groupedRecipes)
+{
+    var typeName = Model.TypeTranslations.ContainsKey(group.Key) ? Model.TypeTranslations[group.Key] : group.Key;
 
-        <div class="row">
+    <h2 class="section-title">@typeName</h2>
+
+    <div class="row">
+        @if (!group.Any())
+        {
+            <div class="col-12">
+                <p class="text-center text-muted">لا توجد وصفات في هذا القسم حالياً.</p>
+            </div>
+        }
+        else
+        {
             @foreach (var recipe in group)
             {
                 var title = recipe.TitleAr ?? recipe.TitleEn;
-                var description = recipe.DescriptionAr ?? recipe.DescriptionEn;
+                var description = !string.IsNullOrEmpty(recipe.DescriptionAr) && recipe.DescriptionAr.Length > 80
+                ? recipe.DescriptionAr.Substring(0, 80) + "..."
+                : recipe.DescriptionAr ?? recipe.DescriptionEn;
 
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card recipe-card h-100">
+                        @if (!string.IsNullOrEmpty(recipe.ImagePath))
+                        {
+                            <div class="card-img-container">
+                                <img src="~/@recipe.ImagePath" class="card-img-top" alt="@title">
+                            </div>
+                        }
                         <div class="card-body">
-                            <h5 class="card-title">@title</h5>
-                            <p class="card-text">@description</p>
-                            @if (!string.IsNullOrEmpty(recipe.ImagePath))
-                            {
-                                <img src="~/@recipe.ImagePath" alt="@title" class="img-fluid" />
-                            }
+                            <div>
+                                <h5 class="card-title">@title</h5>
+                                <p class="card-text">@description</p>
+                            </div>
+                            <div class="mt-auto">
+                                <p class="card-price mb-0">@recipe.Price.ToString("C", new CultureInfo("ar-EG"))</p>
+                            </div>
                         </div>
-                        <div class="card-footer text-center bg-white">
-                            <a href="/Admin/EditRecipe/@recipe.Id" class="btn btn-warning me-2">تعديل</a>
-                            <a href="/Admin/AddCode/@recipe.Id" class="btn btn-success me-2">إضافة كود</a>
-                            <form asp-action="DeleteRecipe" asp-route-id="@recipe.Id" method="post" style="display:inline;" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
-                                <button type="submit" class="btn btn-danger">حذف</button>
+                        <div class="card-footer">
+                            <a href="/Admin/EditRecipe/@recipe.Id" class="btn btn-sm btn-outline-primary" title="تعديل"><i class="fas fa-edit"></i></a>
+                            <a href="/Admin/AddCode/@recipe.Id" class="btn btn-sm btn-outline-success" title="إضافة كود"><i class="fas fa-qrcode"></i></a>
+                            <form asp-action="DeleteRecipe" asp-route-id="@recipe.Id" method="post" class="d-inline" onsubmit="return confirm('هل أنت متأكد من الحذف؟');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="حذف"><i class="fas fa-trash"></i></button>
                             </form>
                         </div>
                     </div>
                 </div>
             }
-        </div>
-    }
-</div>
-
-<h2>إدارة محتوى الأقسام</h2>
-
-<table class="table container mb-5">
-    <thead>
-        <tr>
-            <th>النص (عربي)</th>
-            <th>النص (إنجليزي)</th>
-            <th>الإجراءات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.SectionContents)
-        {
-            <tr>
-                <td>@item.TextAr</td>
-                <td>@item.TextEn</td>
-                <td>
-                    <a asp-action="EditSection" asp-route-id="@item.Id" class="btn btn-sm btn-warning">تعديل</a>
-                </td>
-            </tr>
         }
-    </tbody>
-</table>
-    
+    </div>
+}
+
+
+<div class="mt-5">
+    <h2 class="section-title">إدارة محتوى الأقسام</h2>
+    <div class="table-container">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>النص (عربي)</th>
+                    <th>النص (إنجليزي)</th>
+                    <th class="text-center">الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SectionContents)
+                {
+                    <tr>
+                        <td>@item.TextAr</td>
+                        <td>@item.TextEn</td>
+                        <td class="text-center">
+                            <a asp-action="EditSection" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> تعديل</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

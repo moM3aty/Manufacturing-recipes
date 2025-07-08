@@ -1,30 +1,68 @@
-﻿@model PaymentMethod
+﻿@model Kitchen.Models.PaymentMethod
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    ViewData["Title"] = "تعديل طريقة الدفع";
 }
 
-<h2 class="text-center">@(ViewContext.RouteData.Values["action"].ToString() == "Create" ? "إضافة طريقة دفع" : "تعديل طريقة دفع")</h2>
+<div class="form-container">
+    <h2>
 
-<form asp-action="@ViewContext.RouteData.Values["action"]">
-    <div class="form-group">
-        <label>نوع الطريقة عربي</label>
-        <input asp-for="TypeAr" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>نوع الطريقة انجليزي</label>
-        <input asp-for="TypeEn" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>رقم الحساب</label>
-        <input asp-for="AccountNumber" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>رقم IBAN</label>
-        <input asp-for="IBAN" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>بريد إنستاباي</label>
-        <input asp-for="InstapayEmail" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-success">حفظ</button>
-</form>
+            <i class="fas fa-edit"></i>
+        
+        @ViewData["Title"]
+    </h2>
+
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TypeAr" class="form-label">نوع الطريقة (عربي)</label>
+                    <input asp-for="TypeAr" class="form-control" />
+                    <span asp-validation-for="TypeAr" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TypeEn" class="form-label">نوع الطريقة (انجليزي)</label>
+                    <input asp-for="TypeEn" class="form-control" />
+                    <span asp-validation-for="TypeEn" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="AccountNumber" class="form-label">رقم الحساب</label>
+            <input asp-for="AccountNumber" class="form-control" placeholder="اختياري" />
+            <span asp-validation-for="AccountNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IBAN" class="form-label">رقم IBAN</label>
+            <input asp-for="IBAN" class="form-control" placeholder="اختياري" />
+            <span asp-validation-for="IBAN" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="InstapayEmail" class="form-label">بريد إنستاباي</label>
+            <input asp-for="InstapayEmail" class="form-control" placeholder="اختياري" />
+            <span asp-validation-for="InstapayEmail" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-times"></i> إلغاء
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> حفظ
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

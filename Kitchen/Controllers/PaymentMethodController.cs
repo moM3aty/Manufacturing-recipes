@@ -33,11 +33,11 @@ namespace Kitchen.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(PaymentMethod method)
         {
-            
-                _context.paymentMethods.Add(method);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-          
+
+            _context.paymentMethods.Add(method);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
         // Show edit form
@@ -62,7 +62,7 @@ namespace Kitchen.Controllers
             return View(method);
         }
 
-            
+
         public IActionResult Delete(int id)
         {
             var method = _context.paymentMethods.FirstOrDefault(m => m.Id == id);
@@ -72,6 +72,6 @@ namespace Kitchen.Controllers
             return RedirectToAction("Index");
         }
 
-        
+
     }
 }

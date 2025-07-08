@@ -1,74 +1,66 @@
 ﻿@model Kitchen.Models.Offer
+
 @{
+    ViewData["Title"] = "تعديل العرض";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-<style>
 
-    .form-group {
-        margin-bottom: 1.5rem;
-        width: 70%;
-        margin: 0 auto;
-    }
+<div class="form-container">
+    <h2><i class="fas fa-edit"></i> @ViewData["Title"]</h2>
 
-    .form-control {
-        direction: rtl;
-        font-size: 1rem;
-        padding: 10px;
-    }
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ImageUrl" /> <!-- To preserve the old image path if no new image is uploaded -->
 
-    .btn-block {
-        width: 200px;
-        padding: 12px;
-        margin: 20px auto;
-        background-color: lightpink;
-        border: none;
-        justify-content: center;
-        display: flex;
-    }
-
-    .col-form-label {
-        font-weight: bold;
-    }
-
-</style>
-@using (Html.BeginForm("Edit", "Offers", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.HiddenFor(m => m.Id)
-    @Html.HiddenFor(m => m.ImageUrl)<!-- نحفظ المسار القديم في حالة لم يتم رفع صورة جديدة -->
-
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.TitleAr, "العنوان (عربي)", new { @class = "col-form-label" })
-        @Html.TextBoxFor(m => m.TitleAr, new { @class = "form-control", placeholder = "أدخل العنوان بالعربية" })
-    </div>
-
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.TitleEn, "العنوان (إنجليزي)", new { @class = "col-form-label" })
-        @Html.TextBoxFor(m => m.TitleEn, new { @class = "form-control", placeholder = "Enter the title in English" })
-    </div>
-
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.DescriptionAr, "الوصف (عربي)", new { @class = "col-form-label" })
-        @Html.TextAreaFor(m => m.DescriptionAr, new { @class = "form-control", placeholder = "أدخل الوصف بالعربية" })
-    </div>
-
-    <div class="form-group text-right">
-        @Html.LabelFor(m => m.DescriptionEn, "الوصف (إنجليزي)", new { @class = "col-form-label" })
-        @Html.TextAreaFor(m => m.DescriptionEn, new { @class = "form-control", placeholder = "Enter the description in English" })
-    </div>
-
-    @if (!string.IsNullOrEmpty(Model?.ImageUrl))
-    {
-        <div class="form-group text-right">
-            <label class="col-form-label">الصورة الحالية</label><br />
-            <img src="@Model.ImageUrl" alt="صورة العرض" class="img-thumbnail" style="max-width: 200px;" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitleAr" class="form-label">العنوان (عربي)</label>
+                    <input asp-for="TitleAr" class="form-control" />
+                    <span asp-validation-for="TitleAr" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="TitleEn" class="form-label">العنوان (إنجليزي)</label>
+                    <input asp-for="TitleEn" class="form-control" />
+                    <span asp-validation-for="TitleEn" class="text-danger"></span>
+                </div>
+            </div>
         </div>
-    }
 
-    <div class="form-group text-right">
-        @Html.Label("تغيير الصورة", null, new { @class = "col-form-label" })
-        <input type="file" name="ImageFile" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label asp-for="DescriptionAr" class="form-label">الوصف (عربي)</label>
+            <textarea asp-for="DescriptionAr" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="DescriptionAr" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-primary btn-block">حفظ التعديلات</button>
+        <div class="form-group">
+            <label asp-for="DescriptionEn" class="form-label">الوصف (إنجليزي)</label>
+            <textarea asp-for="DescriptionEn" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="DescriptionEn" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">تغيير الصورة (اختياري)</label>
+            <input type="file" name="ImageFile" class="form-control" accept="image/*" />
+            @if (!string.IsNullOrEmpty(Model?.ImageUrl))
+            {
+                <div class="mt-2">
+                    <label class="form-label d-block">الصورة الحالية:</label>
+                    <img src="@Model.ImageUrl" alt="صورة العرض الحالية" class="img-thumbnail" style="max-width: 200px; border-radius: 8px;" />
+                </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-times"></i> إلغاء</a>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ التعديلات</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
-

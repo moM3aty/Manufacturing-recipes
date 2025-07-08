@@ -1,51 +1,66 @@
 ﻿using Kitchen.Data;
+using Kitchen.Models;
 using Microsoft.EntityFrameworkCore;
-using static Kitchen.Controllers.RecipeController;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Add EF Core
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ✅ Add MVC
+
 builder.Services.AddControllersWithViews();
 
-// ✅ Add Session Services
-builder.Services.AddDistributedMemoryCache(); // Required for session
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Optional: session timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    serverOptions.Limits.MaxRequestBodySize = 104857600; // 100 MB
-});
+builder.Services.AddLogging();
+
 
 var app = builder.Build();
 
-// ✅ Configure HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
-app.UseMiddleware<LanguageMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-// ✅ Enable Session BEFORE Authorization
-app.UseSession();
+app.UseMiddleware<LanguageMiddleware>();
 
+app.UseSession();
 app.UseAuthorization();
 
-// ✅ Setup routing
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Recipe}/{action=Index}/{id?}");
 
 app.Run();
+
+public class LanguageMiddleware
+{
+    private readonly RequestDelegate _next;
+
+    public LanguageMiddleware(RequestDelegate next)
+    {
+        _next = next;
+    }
+
+    public async Task InvokeAsync(HttpContext context)
+    {
+        var language = context.Request.Cookies["Language"] ?? "ar";
+        var direction = language == "ar" ? "rtl" : "ltr";
+
+        context.Items["Language"] = language;
+        context.Items["Direction"] = direction;
+
+        await _next(context);
+    }
+}

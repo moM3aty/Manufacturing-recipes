@@ -6,8 +6,27 @@
         --accent-light: #ffc1b4;
     }
 
-  
- 
+
+    .category-badge {
+        background-color: var(--accent-light);
+        color: var(--primary-dark);
+        font-weight: 600;
+        animation: pulse 2s infinite;
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
     .bg-gradient-primary {
         background: linear-gradient( 135deg, var(--primary-dark) 0%, var(--primary) 100% ) !important;
     }
@@ -41,12 +60,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    .category-badge {
-        background-color: var(--accent-light);
-        color: var(--primary-dark);
-        font-weight: 600;
     }
 
     footer {

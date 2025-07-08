@@ -2,11 +2,11 @@
 @{
     var direction = ViewData["Direction"]?.ToString() ?? "rtl";
     var language = ViewData["Language"]?.ToString() ?? "ar";
+    ViewData["Title"] = language == "ar" ? "إدخال الكود" : "Enter Code";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
-    
-
     .verify-container {
         background: #fff;
         padding: 40px;
@@ -15,8 +15,7 @@
         width: 100%;
         max-width: 450px;
         text-align: center;
-        margin:50px auto;
-        
+        margin: 50px auto;
     }
 
         .verify-container h2 {
@@ -56,11 +55,11 @@
                 background: #f38c79;
             }
 
-        .verify-container a {
+        .verify-container a.whatsapp-link {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 20px;
-            background-color: green;
+            background-color: #25D366; /* WhatsApp Green */
             color: white;
             text-decoration: none;
             border-radius: 10px;
@@ -68,19 +67,32 @@
             transition: background 0.3s ease;
         }
 
-            .verify-container a:hover {
-                background-color: forestgreen;
+            .verify-container a.whatsapp-link:hover {
+                background-color: #128C7E;
             }
 </style>
 
 <div class="verify-container">
-    <h2>أدخل كود الوصفة</h2>
-    <form method="post" action="/Recipe/VerifyCode">
+    <h2>@(language == "ar" ? "أدخل كود الوصفة" : "Enter Recipe Code")</h2>
+
+    @* **FIX**: Display validation error message from TempData. *@
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <form asp-controller="Recipe" asp-action="VerifyCode" method="post">
+        @Html.AntiForgeryToken()
         <input type="hidden" name="id" value="@Model" />
-        <input type="text" name="code" placeholder="أدخل الكود هنا" required />
-        <button type="submit">تحقق</button>
+        <div class="form-group">
+            <input type="text" name="code" class="form-control" placeholder="@(language == "ar" ? "أدخل الكود هنا" : "Enter code here")" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">@(language == "ar" ? "تحقق" : "Verify")</button>
     </form>
-    <a href="https://wa.me/+201001088937?text=Hello%20I%20need%20the%20code%20for%20recipe%20@Model" target="_blank">
-        تواصل عبر واتساب
+
+    <a href="https://wa.me/+201001088937?text=Hello%20I%20need%20the%20code%20for%20recipe%20@Model" target="_blank" class="whatsapp-link">
+        <i class="fab fa-whatsapp"></i> @(language == "ar" ? "تواصل عبر واتساب" : "Contact via WhatsApp")
     </a>
 </div>

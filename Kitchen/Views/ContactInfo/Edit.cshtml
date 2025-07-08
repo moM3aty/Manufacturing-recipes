@@ -1,25 +1,60 @@
-﻿@model ContactInfo
+﻿@model Kitchen.Models.ContactInfo
 
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    ViewData["Title"] = ViewContext.ViewData["Title"] ?? "إضافة جهة اتصال";
+    // تحديد عنوان الصفحة بناءً على ما إذا كانت عملية إضافة أو تعديل
+    bool isCreate = Model == null || Model.Id == 0;
+    ViewData["Title"] = isCreate ? "إضافة جهة اتصال جديدة" : "تعديل جهة الاتصال";
 }
 
-<form asp-action="@(ViewContext.ViewData["Title"] == "Edit" ? "Edit" : "Create")" dir="rtl">
-    <div class="form-group">
-        <label asp-for="Type" class="control-label">نوع جهة الاتصال</label>
-        <select asp-for="Type" class="form-control">
-            <option value="Email">البريد الإلكتروني</option>
-            <option value="Phone">الهاتف / واتساب</option>
-            <option value="Vodafone">فودافون كاش</option>
-        </select>
-    </div>
+<div class="form-container">
+    <h2>
+        @if (isCreate)
+        {
+            <i class="fas fa-plus-circle"></i>
+        }
+        else
+        {
+            <i class="fas fa-edit"></i>
+        }
+        @ViewData["Title"]
+    </h2>
 
-    <div class="form-group">
-        <label asp-for="Value" class="control-label">القيمة</label>
-        <input asp-for="Value" class="form-control" />
-        <span asp-validation-for="Value" class="text-danger"></span>
-    </div>
+    <form asp-action="@(isCreate ? "Create" : "Edit")" method="post">
+        @Html.AntiForgeryToken()
 
-    <button type="submit" class="btn btn-success">حفظ</button>
-</form>
+        @if (!isCreate)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="form-group">
+            <label asp-for="Type" class="form-label">نوع جهة الاتصال</label>
+            <select asp-for="Type" class="form-select">
+                <option value="Email">البريد الإلكتروني</option>
+                <option value="Phone">الهاتف / واتساب</option>
+                <option value="Vodafone">فودافون كاش</option>
+            </select>
+            <span asp-validation-for="Type" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Value" class="form-label">القيمة (رقم الهاتف، البريد، إلخ)</label>
+            <input asp-for="Value" class="form-control" />
+            <span asp-validation-for="Value" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-times"></i> إلغاء
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> حفظ
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

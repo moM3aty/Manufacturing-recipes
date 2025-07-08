@@ -38,6 +38,7 @@ wwwroot\assets\vc.webp
 wwwroot\assets\What-Does-a-Pharmaceutical-Scientist-Do_.jpg
 wwwroot\assets\za3ter.jpeg
 wwwroot\css\Agriculture.css
+wwwroot\css\dashboard-styles.css
 wwwroot\css\style.css
 wwwroot\favicon.ico
 wwwroot\js\Agriculture.js
@@ -103,67 +104,75 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\recipes\f016a88c-33d7-4323-b231-8cc288eedf1a.zip
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\css\Agriculture.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\css\style.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\favicon.ico
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\js\Agriculture.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\js\script.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\LICENSE.md
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.min.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.js
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.map
-E:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\LICENSE.txt
+wwwroot\uploads\1.jpeg
+wwwroot\uploads\images\7e08761f-0434-4847-9249-7c527f13070b.jpg
+wwwroot\uploads\images\e3036a4d-cedc-4c4d-9259-eb1b08ade5d6.jpg
+wwwroot\uploads\title-wood.jpg
+wwwroot\uploads\white-notebook-black-data-firewall.jpg
+wwwroot\uploads\zips\20172dd8-4233-44b7-a78d-5d29dc9e6ba4.zip
+wwwroot\uploads\zips\9517e45c-019f-49dc-bf06-7534ba0b5dad.zip
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\css\Agriculture.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\css\dashboard-styles.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\css\style.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\favicon.ico
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\js\Agriculture.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\js\script.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery-validation\LICENSE.md
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.min.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.js
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\dist\jquery.slim.min.map
+G:\Developer\GMT Web\Manufacturing-recipes\Kitchen\wwwroot\lib\jquery\LICENSE.txt

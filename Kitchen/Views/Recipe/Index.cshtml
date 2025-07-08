@@ -1,7 +1,11 @@
 ﻿@using Kitchen.ViewModel
 @model AdminDashboardViewModel
 
-<!-- Hero Section with Parallax and Animation -->
+@{
+    var direction = ViewData["Direction"]?.ToString() ?? "rtl";
+    var language = ViewData["Language"]?.ToString() ?? "ar";
+}
+
 <style>
 
     .btn-accent {
@@ -180,6 +184,139 @@
         -webkit-line-clamp: unset;
         overflow: visible;
     }
+
+    #recipes {
+        background-color: #f8f9fa; /* Light gray background for contrast */
+    }
+
+        #recipes .section-title-container {
+            margin-bottom: 4rem;
+        }
+
+        #recipes .section-title {
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        /* Overriding general card styles only within the #recipes section */
+        #recipes .card {
+            border: none;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+            #recipes .card:hover {
+                transform: translateY(-12px);
+                box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+            }
+
+        #recipes .card-img-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #recipes .card-img-top {
+            height: 240px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            border-radius: 0; /* Remove radius from image as container handles it */
+        }
+
+        #recipes .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        #recipes .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
+            animation: bounce-in 0.6s ease;
+        }
+
+        #recipes .card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        #recipes .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        #recipes .offer-full-description {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        #recipes .toggle-description-btn {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none !important;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            #recipes .toggle-description-btn:hover {
+                text-decoration: underline !important;
+                box-shadow: none;
+                transform: none;
+            }
+
+        #recipes .btn-buy-now {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 0.6rem 1.25rem;
+            transition: all 0.3s ease;
+            margin-top: auto; /* Pushes to the bottom */
+            width: 100%;
+        }
+
+            #recipes .btn-buy-now:hover {
+                background-color: var(--primary-dark);
+                border-color: var(--primary-dark);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+    /* Animation for the badge */
+    @@keyframes bounce-in {
+        0%
+
+    {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    }
 </style>
 
 
@@ -320,87 +457,97 @@
                 </div>
             </div>
 
+            <!-- Card 6: FeasibilityStudies -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="500">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/FeasibilityStudies.jpeg" alt="Food" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "دراسات جدوى" : "FeasibilityStudies")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "نقدم تحليلات شاملة ومتعمقة للسوق، والجوانب المالية، والفنية، والقانونية لمساعدتك على اتخاذ قرارات استثمارية مدروسة."
+                                                        : "We provide comprehensive and in-depth analysis of the market, financial, technical, and legal aspects to help you make informed investment decisions.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="FeasibilityStudies" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 7: industrialModels -->
+            <div class="col-md-4 px-3" data-aos="fade-up" data-aos-delay="500">
+                <div class="kitchen-item card h-100 hover-card">
+                    <img src="~/assets/industrialModels.jpg" alt="Food" class="card-img-top" />
+                    <div class="card-body d-flex flex-column">
+                        <h3 class="item-title text-center">
+                            @(ViewData["Direction"].ToString() == "rtl" ? "نماذج صناعية" : "industrialModels")
+                        </h3>
+                        <p class="item-description">
+                            @(ViewData["Direction"].ToString() == "rtl"
+                                                        ? "نحن متخصصون في تصميم وتصنيع النماذج الصناعية بكافة أنواعها، مساعدينك على اختبار تصميماتك وعرض منتجاتك بأعلى جودة."
+                                                        : "We specialize in designing and manufacturing all types of industrial models, helping you test your designs and showcase your products with the highest quality.")
+                        </p>
+                        <div class="mt-auto">
+                            <a asp-action="industrialModels" class="btn btn-primary w-100">
+                                @(ViewData["Direction"].ToString() == "rtl" ? "زور الصفحة" : "Visit Page")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section id="recipes"
-         class="py-5"
-         data-aos="fade-up"
-         data-aos-duration="1500">
+<section id="recipes" class="py-5" data-aos="fade-up" data-aos-duration="1500">
     <div class="container">
-        <h2 class="section-title">
-                @if (ViewData["Direction"].ToString() == "rtl")
-                {
-                    @:عروض وإعلانات
-                }
-                else
-                {
-                    @:Offers and Promotions
-                }
-        </h2>
+        <div class="text-center section-title-container">
+            <h2 class="section-title display-5 fw-bold">
+                @(language == "ar" ? "عروض وإعلانات" : "Offers and Promotions")
+            </h2>
+            <p class="lead text-muted">
+                @(language == "ar" ? "اكتشف أفضل المنتجات والتركيبات التي نقدمها خصيصًا لك" : "Discover the best products and formulas we offer just for you")
+            </p>
+        </div>
+
         <div class="row g-4">
-@foreach(var sponser in Model.Offers) {
-                <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                    <div class="card shadow-lg hover-card h-100" data-aos="flip-left">
-                    <img src="@sponser.ImageUrl"
-                         class="card-img-top" style="object-fit:fill"
-                         alt="  @if (ViewData["Direction"].ToString() == "rtl"){@sponser.TitleAr}else{@sponser.TitleEn}"
-                         loading="lazy" />
-                    <div class="card-body">
-                        <h5 class="card-title">@if (ViewData["Direction"].ToString() == "rtl"){
-                        @:عرض خاص
-                                                }else
-                        {
-
-                                @:Special offer
-                        }
- </h5>
-                        <p class="card-text">@if (ViewData["Direction"].ToString() == "rtl"){
-                        @sponser.TitleAr
-                                                }else
-                        {
-
-                            @sponser.TitleEn
-                        }
-</p>
-                        <div class="offer-full-description-container">
-                            <p class="offer-full-description line-clamp">
-                                @if (ViewData["Direction"]?.ToString() == "rtl")
-                                {
-                                    @Html.Raw(sponser.DescriptionAr)
-                                }
-                                else
-                                {
-                                    @Html.Raw(sponser.DescriptionEn)
-                                }
-                            </p>
-
-                            <button id="toggle-description" class="btn btn-link" style="color:#034c53; background-color:transparent;">
-                                @(ViewData["Direction"]?.ToString() == "rtl" ? "عرض المزيد" : "Show More")
-                            </button>
+            @for (int i = 0; i < Model.Offers.Count; i++)
+            {
+                var offer = Model.Offers[i];
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100" data-aos="fade-up" data-aos-delay="@(i * 100)">
+                        <div class="card-img-container">
+                            <img src="@offer.ImageUrl"
+                                 class="card-img-top"
+                                 alt="@(language == "ar" ? offer.TitleAr : offer.TitleEn)"
+                                 loading="lazy" />
+                            <span class="offer-badge">@(language == "ar" ? "عرض خاص" : "Special Offer")</span>
                         </div>
-
-
-                        <a href="https://wa.me/+201001088937?text=Hello%20I%20need%20the%20code%20for%20recipe%20@Model" class="btn btn-primary">
-                            @if (ViewData["Direction"].ToString() == "rtl")
-                            {
-                                @:اشتري الآن
-                            }
-                            else
-                            {
-
-                                @:Buy Now
-                            }
-                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">@(language == "ar" ? offer.TitleAr : offer.TitleEn)</h5>
+                            <div class="offer-full-description-container mb-3">
+                                <p class="offer-full-description line-clamp">
+                                    @(language == "ar" ? Html.Raw(offer.DescriptionAr) : Html.Raw(offer.DescriptionEn))
+                                </p>
+                                <button class="btn btn-link toggle-description-btn">
+                                    @(language == "ar" ? "عرض المزيد" : "Show More")
+                                </button>
+                            </div>
+                            <a href="https://wa.me/+201001088937?text=Hello, I'm interested in your offer: @(language == "ar" ? offer.TitleAr : offer.TitleEn)" class="btn btn-buy-now">
+                                <i class="fab fa-whatsapp me-2"></i> @(language == "ar" ? "اطلب الآن" : "Order Now")
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             }
         </div>
     </div>
 </section>
+
 <section id="about-us" class="py-5">
     <div class="container">
         <div class="row align-items-center">
@@ -462,23 +609,27 @@
         </div>
     </div>
 </section>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const desc = document.querySelector('.offer-full-description');
-        const toggleBtn = document.getElementById('toggle-description');
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButtons = document.querySelectorAll('.toggle-description-btn');
 
-        if (!desc || !toggleBtn) return;
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    const container = event.currentTarget.parentElement;
+                    const description = container.querySelector('.offer-full-description');
 
-        const direction = document.documentElement.getAttribute('dir') || 'rtl';
+                    if (description) {
+                        description.classList.toggle('expanded');
+                        const isExpanded = description.classList.contains('expanded');
 
-        toggleBtn.addEventListener('click', function () {
-            desc.classList.toggle('expanded');
-            const isExpanded = desc.classList.contains('expanded');
-            toggleBtn.textContent = direction === 'rtl'
-                ? (isExpanded ? 'عرض أقل' : 'عرض المزيد')
-                : (isExpanded ? 'Show Less' : 'Show More');
+                        const lang = document.documentElement.lang || 'ar';
+                        event.currentTarget.textContent = (lang === 'ar')
+                            ? (isExpanded ? 'عرض أقل' : 'عرض المزيد')
+                            : (isExpanded ? 'Show Less' : 'Show More');
+                    }
+                });
+            });
         });
-    });
-</script>
-
-
+    </script>
+}

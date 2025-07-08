@@ -99,9 +99,8 @@ namespace Kitchen.Controllers
 
                     offer.ImageUrl = "/uploads/" + fileName;
                 }
-                // else keep the old ImageUrl
 
-                _context.SaveChanges(); // Save changes to the database
+                _context.SaveChanges(); 
             }
 
             return RedirectToAction("Index");
@@ -112,8 +111,8 @@ namespace Kitchen.Controllers
             var offer = _context.Offers.FirstOrDefault(o => o.Id == id);
             if (offer != null)
             {
-                _context.Offers.Remove(offer); // Remove the offer from the database
-                _context.SaveChanges(); // Save changes to the database
+                _context.Offers.Remove(offer); 
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
